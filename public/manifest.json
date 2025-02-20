@@ -1,7 +1,7 @@
 {
     "name": "SHIFT Helper",     
     "short_name": "SH",    
-    "start_url": "/index.html",   
+    "start_url": "/public/index.html",   
     "display": "standalone",      
     "background_color": "#ffffff", 
     "theme_color": "#007bff",     

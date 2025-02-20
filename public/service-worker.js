@@ -1,11 +1,11 @@
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/assets/icons/icon-192x192.png',
-  '/assets/icons/icon-512x512.png'
+  '/public/',
+  '/public/index.html',
+  '/public/style.css',
+  '/public/script.js',
+  '/public/assets/icons/icon-192x192.png',
+  '/public/assets/icons/icon-512x512.png'
 ];
 
 self.addEventListener('install', function(event) {
