@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <meta charset="UTF-8">
     <title>SHIFT Helper</title>
-    <link rel="manifest" href="/public/manifest.json">
-    <link rel="stylesheet" href="/public/style.css"> </head>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
     <div id="depot-selection-container">
         <div id="depot-selection-ui">
@@ -32,7 +36,7 @@
         </div>
         <section id="week-date-selector" style="display: none;">
             <p>请选择你想要排班的那一周的任意一天</p>
-            <input type="date" id="week-start-date">
+            <input type="date" id="week-start-date" value="2025-01-01">
             <button id="back-to-depot-selection">返回</button>
         </section>
 
@@ -156,8 +160,8 @@
         </section>
 
     </div>
-    <script src="/public/utils.js"></script>
-    <script src="/public/script.js"></script>
+    <script src="utils.js"></script>
+    <script src="script.js"></script>
     <script>
         console.log("script.js 文件已加载");
     </script>

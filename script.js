@@ -199,29 +199,28 @@ addToCalendarButton.textContent = "正在生成日历文件..."; // **点击按�
             // **6.2. 创建下载链接 (URL)**
             const downloadUrl = URL.createObjectURL(blob); // 使用 URL.createObjectURL() 方法创建 Blob 对象的 URL
 
-            // **6.3. 创建 <a> 元素 (download link)**
-            const downloadLink = document.createElement('a'); // 创建 <a> 元素
-            downloadLink.href = downloadUrl;          // 设置 <a> 元素的 href 属性为 Blob URL
-            downloadLink.download = '排班日历.ics';     // 设置 <a> 元素的 download 属性，指定下载文件名 (例如 "排班日历.ics")
-
-            downloadLink.style.display = 'none';     // **(可选) 设置 <a> 元素样式为隐藏，使其不显示在页面上**  (可以省略这行， 如果你想显示下载链接)
-
-            // **6.4. 将 <a> 元素添加到 body 中**
-            document.body.appendChild(downloadLink); // 将 <a> 元素添加到 document.body 中
-
-            // **6.5. 模拟点击 <a> 元素，触发文件下载**
-            downloadLink.click(); // 模拟点击 <a> 元素，触发文件下载
-
-            // **6.6. (可选)  下载完成后， 移除 <a> 元素， 并 释放 Blob URL**
-            document.body.removeChild(downloadLink); // 将 <a> 元素从 document.body 中移除
-            URL.revokeObjectURL(downloadUrl);      // 释放 Blob URL， 释放内存
-
-            console.log("已触发 .ics 文件下载"); // 调试信息 -  输出 "已触发 .ics 文件下载" 信息到控制台
-
-             // **7. 增强用户体验 - 按钮状态变化 (下载完成后恢复按钮文本)**
-             addToCalendarButton.textContent = "添加到日历"; // **下载触发后， 将按钮文本恢复为 "添加到日历"**
-            //  “添加到日历” 按钮 点击事件处理函数  代码结束
-
+             // **6.3. 获取预先存在的 <a> 元素 (download link)**
+             const downloadLink = document.getElementById('hiddenDownloadLink'); // **获取预先存在的 <a> 元素**
+             downloadLink.href = downloadUrl;          // 设置 <a> 元素的 href 属性为 Blob URL
+             // downloadLink.download = '排班日历.ics';     // **<a download> 属性已经在 HTML 中设置， 这里不需要重复设置**  (可以省略这行)
+ 
+             // downloadLink.style.display = 'none';     // **隐藏样式已经在 HTML 中设置， 这里不需要重复设置** (可以省略这行)
+ 
+             // **6.4.  不需要将 <a> 元素添加到 body 中 (因为元素已经在 HTML 中)**
+             // document.body.appendChild(downloadLink); // 将 <a> 元素添加到 document.body 中  - **移除这行**
+ 
+             // **6.5. 模拟点击 <a> 元素，触发文件下载**
+             downloadLink.click(); // 模拟点击 <a> 元素，触发文件下载
+ 
+             // **6.6. (可选)  下载完成后， 释放 Blob URL**
+             URL.revokeObjectURL(downloadUrl);      // 释放 Blob URL， 释放内存
+             // document.body.removeChild(downloadLink); // 将 <a> 元素从 document.body 中移除 -  移除这行， 因为 <a> 元素是预先存在的，不需要移除
+ 
+             console.log("已触发 .ics 文件下载 (使用预先存在的 <a> 元素)"); // 修改调试信息
+ 
+              // **7. 增强用户体验 - 按钮状态变化 (下载完成后恢复按钮文本)**
+              addToCalendarButton.textContent = "添加到日历"; // **下载触发后， 将按钮文本恢复为 "添加到日历"**
+             //  “添加到日历” 按钮 点击事件处理函数  代码结束
 
     //  后续步骤：  在这里编写  生成 .ics 文件  并  下载的代码
 });
@@ -618,7 +617,7 @@ const shiftOptionsGroups = {
 
  if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/public/service-worker.js')
+      navigator.serviceWorker.register('service-worker.js')
         .then(registration => {
           console.log('ServiceWorker registration successful with scope: ', registration.scope);
         })
