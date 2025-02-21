@@ -1,6 +1,6 @@
 {
     "name": "SHIFT Helper",     
-    "short_name": "SH",    
+    "short_name": "SHIFT Helper",    
     "start_url": "index.html",   
     "display": "standalone",      
     "background_color": "#ffffff", 
