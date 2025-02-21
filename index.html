@@ -13,11 +13,11 @@
     <div id="depot-selection-container">
         <div id="depot-selection-ui">
             <header>
-                <h1>排班助手</h1>
+                <h1>SHIFT Helper</h1>
             </header>
 
             <section id="depot-prompt">
-                <p>请选择您的 DEPOT</p>
+                <p>Please select a DEPOT</p>
             </section>
 
             <section id="school-holiday-setting">
@@ -35,30 +35,30 @@
             </section>
         </div>
         <section id="week-date-selector" style="display: none;">
-            <p>请选择你想要排班的那一周的任意一天</p>
+            <p>Pick a day from your desired week</p>
             <input type="date" id="week-start-date" value="2025-01-01">
-            <button id="back-to-depot-selection">返回</button>
+            <button id="back-to-depot-selection">Back</button>
         </section>
 
         <section id="schedule-week-view" style="display: none;">
-            <h2>请点击下方的日期以开始排班</h2>
+            <h2>Toggle the holiday switch if applicable, then pick a shift from the dropdown.</h2>
             <div id="schedule-table-view-container">
                 <table>
                     <thead>
                         <tr>
                             <th></th>
-                            <th>日期</th>
+                            <th>Date</th>
                             <th>Shift</th>
-                            <th>公共假日</th>
+                            <th>Holiday</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>星期日</th>
+                            <th>SUN</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -68,11 +68,11 @@
                             <td><label class="switch"><input type="checkbox"><span class="slider round"></span></label></td>
                         </tr>
                         <tr>
-                            <th>星期一</th>
+                            <th>MON</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -82,11 +82,11 @@
                             <td><label class="switch weekday-holiday-switch weekday-holiday-switch-mon"><input type="checkbox"><span class="slider round"></span></label></td>
                         </tr>
                         <tr>
-                            <th>星期二</th>
+                            <th>TUE</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -96,11 +96,11 @@
                             <td><label class="switch weekday-holiday-switch weekday-holiday-switch-tue"><input type="checkbox"><span class="slider round"></span></label></td>
                         </tr>
                         <tr>
-                            <th>星期三</th>
+                            <th>WED</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -110,11 +110,11 @@
                             <td><label class="switch weekday-holiday-switch weekday-holiday-switch-wed"><input type="checkbox"><span class="slider round"></span></label></td>
                         </tr>
                         <tr>
-                            <th>星期四</th>
+                            <th>THU</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -124,11 +124,11 @@
                             <td><label class="switch weekday-holiday-switch weekday-holiday-switch-thu"><input type="checkbox"><span class="slider round"></span></label></td>
                         </tr>
                         <tr>
-                            <th>星期五</th>
+                            <th>FRI</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -139,11 +139,11 @@
                         </tr>
                         </tr>
                         <tr>
-                            <th>星期六</th>
+                            <th>SAT</th>
                             <td></td>
                             <td>
                                 <select class="shift-selector">
-                                    <option value="">请选择班次</option>
+                                    <option value="">Select shift</option>
                                     <option value="morning">早班</option>
                                     <option value="afternoon">午班</option>
                                     <option value="evening">晚班</option>
@@ -154,9 +154,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <button id="add-to-calendar-button" class="depot-button" style="margin-top: 20px;">添加到日历</button>
+                <button id="add-to-calendar-button" class="depot-button" style="margin-top: 20px;">Add to Calendar</button>
                 <a id="hiddenDownloadLink" style="display: none;" download="排班日历.ics"></a>
-                <button id="back-to-date-selector-button">返回</button>
+                <button id="back-to-date-selector-button">Back</button>
             </div>
         </section>
 

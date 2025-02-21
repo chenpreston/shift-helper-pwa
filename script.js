@@ -186,8 +186,7 @@ console.log("生成的 .ics 文件内容:\n", icsContent); // 调试信息 -  �
 
 // **6. 触发 .ics 文件下载**
 
-// **7. 增强用户体验 - 按钮状态变化**
-addToCalendarButton.textContent = "正在生成日历文件..."; // **点击按钮后， 修改按钮文本为 "正在生成日历文件..."**
+
 
             // **6.1. 创建 Blob 对象 - 将 .ics 文件内容转换为 Blob**
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' }); // 创建 Blob 对象，MIME type 设置为 text/calendar
@@ -214,8 +213,7 @@ addToCalendarButton.textContent = "正在生成日历文件..."; // **点击按�
 
             console.log("已触发 .ics 文件下载 (使用预先存在的 <a> 元素)"); // 修改调试信息
 
-             // **7. 增强用户体验 - 按钮状态变化 (下载完成后恢复按钮文本)**
-             addToCalendarButton.textContent = "添加到日历"; // **下载触发后， 将按钮文本恢复为 "添加到日历"**
+             
             //  “添加到日历” 按钮 点击事件处理函数  代码结束
 
 
