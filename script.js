@@ -392,6 +392,13 @@ weekdayHolidaySwitches.forEach(holidaySwitch => { // 循环遍历每个工作日
 
 
 const shiftDetailsDictionary = {
+
+
+    "": {"timeRanges": [],"mealLocation": "无","mealTime": "无"},
+    "OFF": {"timeRanges": [],"mealLocation": "无","mealTime": "无"},
+
+
+    
 "T28301T": {"timeRanges": ["05:41-14:57"],"mealLocation": "TAURANGA CBD","mealTime": "56 minutes"},
 "T28301T": {"timeRanges": ["05:41-14:57"],"mealLocation": "TAURANGA CBD","mealTime": "56 minutes"},
 "T28302T": {"timeRanges": ["11:29-21:27"],"mealLocation": "TAURANGA CBD","mealTime": "41 minutes"},
@@ -404,6 +411,8 @@ const shiftDetailsDictionary = {
 "T28313T": {"timeRanges": ["07:04-16:26"],"mealLocation": "TAURANGA CBD","mealTime": "46 minutes"},
 "T28315T": {"timeRanges": ["07:16-16:57"],"mealLocation": "TAURANGA CBD","mealTime": "54 minutes"},
 "T28317T": {"timeRanges": ["07:20-17:02"],"mealLocation": "TAURANGA CBD","mealTime": "35 minutes"},
+
+
 "T28701": {"timeRanges": ["05:44-16:16"],"mealLocation": "TAURANGA CBD","mealTime": "35 minutes"},
 "T28702": {"timeRanges": ["10:01-20:56"],"mealLocation": "TAURANGA CBD","mealTime": "39 minutes"},
 "T28703": {"timeRanges": ["06:11-17:56"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
@@ -413,10 +422,14 @@ const shiftDetailsDictionary = {
 "T28709": {"timeRanges": ["07:22-19:21"],"mealLocation": "GREERTON DEPOT","mealTime": "1 hour"},
 "T28711": {"timeRanges": ["08:22-19:56"],"mealLocation": "TAURANGA CBD","mealTime": "49 minutes"},
 "T28713": {"timeRanges": ["08:45-20:13"],"mealLocation": "GREERTON DEPOT","mealTime": "1 hour"},
+
+
 "T28802": {"timeRanges": ["11:44-20:35"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
 "T28804": {"timeRanges": ["11:49-20:25"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
 "T28806": {"timeRanges": ["12:22-20:36"],"mealLocation": "TAURANGA CBD","mealTime": "49 minutes"},
 "T28808": {"timeRanges": ["12:46-21:04"],"mealLocation": "TAURANGA CBD","mealTime": "39 minutes"},
+
+
 "T26301T": {"timeRanges": ["05:34-14:10"],"mealLocation": "TAURANGA CBD","mealTime": "32 minutes"},
 "T26302T": {"timeRanges": ["10:34-19:52"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
 "T26303T": {"timeRanges": ["05:40-15:06"],"mealLocation": "GREERTON DEPOT","mealTime": "1 hour"},
@@ -455,6 +468,8 @@ const shiftDetailsDictionary = {
 "T26336T": {"timeRanges": ["12:19-21:44"],"mealLocation": "TAURANGA CBD","mealTime": "53 minutes"},
 "T26338T": {"timeRanges": ["13:10-21:48"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
 "T26340T": {"timeRanges": ["13:34-22:25"],"mealLocation": "TAURANGA CBD","mealTime": "45 minutes"},
+
+
 "T26701": {"timeRanges": ["05:37-15:37"],"mealLocation": "TAURANGA CBD","mealTime": "39 minutes"},
 "T26702": {"timeRanges": ["09:10-20:25"],"mealLocation": "TAURANGA CBD","mealTime": "50 minutes"},
 "T26703": {"timeRanges": ["05:47-15:51"],"mealLocation": "GREERTON DEPOT","mealTime": "41 minutes"},
@@ -482,6 +497,8 @@ const shiftDetailsDictionary = {
 "T26743": {"timeRanges": ["08:41-19:55"],"mealLocation": "TAURANGA CBD","mealTime": "54 minutes"},
 "T26745": {"timeRanges": ["08:46-20:18"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
 "T26747": {"timeRanges": ["09:00-20:57"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
+
+
 "T26801": {"timeRanges": ["05:42-14:21"],"mealLocation": "TAURANGA CBD","mealTime": "42 minutes"},
 "T26802": {"timeRanges": ["11:22-20:20"],"mealLocation": "GREERTON DEPOT","mealTime": "1 hour"},
 "T26803": {"timeRanges": ["05:45-13:49"],"mealLocation": "TAURANGA CBD","mealTime": "33 minutes"},
@@ -491,6 +508,53 @@ const shiftDetailsDictionary = {
 "T26807": {"timeRanges": ["06:27-15:21"],"mealLocation": "TAURANGA CBD","mealTime": "1 hour"},
 "T26808": {"timeRanges": ["12:53-21:16"],"mealLocation": "TAURANGA CBD","mealTime": "35 minutes"},
 "T26810": {"timeRanges": ["13:22-21:02"],"mealLocation": "TAURANGA CBD","mealTime": "34 minutes"},
+
+
+"T26301H": {"timeRanges": ["05:30-15:10"],"mealLocation": "TAURANGA CBD","mealTime": "34 minutes"},
+"T26302H": {"timeRanges": ["09:39-19:27"],"mealLocation": "TAURANGA CBD","mealTime": "37 minutes"},
+"T26303H": {"timeRanges": ["05:34-14:31"],"mealLocation": "TAURANGA CBD","mealTime": "30 minutes"},
+"T26304H": {"timeRanges": ["09:44-19:36"],"mealLocation": "TAURANGA CBD","mealTime": "30 minutes"},
+"T26306H": {"timeRanges": ["10:08-20:08"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26307H": {"timeRanges": ["05:45-15:14"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26308H": {"timeRanges": ["10:21-20:21"],"mealLocation": "TAURANGA CBD","mealTime": "44 minutes"},
+"T26309H": {"timeRanges": ["05:46-14:44"],"mealLocation": "TAURANGA CBD","mealTime": "42 minutes"},
+"T26310H": {"timeRanges": ["10:24-20:24"],"mealLocation": "TAURANGA CBD","mealTime": "37 minutes"},
+"T26311H": {"timeRanges": ["05:52-15:50"],"mealLocation": "TAURANGA CBD","mealTime": "40 minutes"},
+"T26312H": {"timeRanges": ["10:51-20:48"],"mealLocation": "TAURANGA CBD","mealTime": "60 minutes"},
+"T26313H": {"timeRanges": ["05:58-15:57"],"mealLocation": "TAURANGA CBD","mealTime": "47 minutes"},
+"T26314H": {"timeRanges": ["10:59-20:55"],"mealLocation": "TAURANGA CBD","mealTime": "32 minutes"},
+"T26316H": {"timeRanges": ["11:08-21:05"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26317H": {"timeRanges": ["05:51-15:59"],"mealLocation": "Greerton Depot","mealTime": "34 minutes"},
+"T26318H": {"timeRanges": ["11:14-21:02"],"mealLocation": "TAURANGA CBD","mealTime": "35 minutes"},
+"T26319H": {"timeRanges": ["06:17-15:58"],"mealLocation": "TAURANGA CBD","mealTime": "36 minutes"},
+"T26320H": {"timeRanges": ["11:14-21:14"],"mealLocation": "TAURANGA CBD","mealTime": "46 minutes"},
+"T26321H": {"timeRanges": ["06:10-16:00"],"mealLocation": "TAURANGA CBD","mealTime": "54 minutes"},
+"T26322H": {"timeRanges": ["11:19-21:09"],"mealLocation": "TAURANGA CBD","mealTime": "60 minutes"},
+"T26323H": {"timeRanges": ["06:16-16:11"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26326H": {"timeRanges": ["11:34-21:30"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26327H": {"timeRanges": ["06:08-16:38"],"mealLocation": "TAURANGA CBD","mealTime": "33 minutes"},
+"T26328H": {"timeRanges": ["11:38-21:29"],"mealLocation": "TAURANGA CBD","mealTime": "41 minutes"},
+"T26329H": {"timeRanges": ["06:42-16:41"],"mealLocation": "TAURANGA CBD","mealTime": "36 minutes"},
+"T26330H": {"timeRanges": ["11:39-21:35"],"mealLocation": "TAURANGA CBD","mealTime": "39 minutes"},
+"T26332H": {"timeRanges": ["11:59-21:44"],"mealLocation": "TAURANGA CBD","mealTime": "44 minutes"},
+"T26334H": {"timeRanges": ["12:04-21:55"],"mealLocation": "TAURANGA CBD","mealTime": "43 minutes"},
+"T26336H": {"timeRanges": ["12:09-21:48"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+"T26338H": {"timeRanges": ["12:34-22:25"],"mealLocation": "TAURANGA CBD","mealTime": "45 minutes"},
+
+
+"T28301H": {"timeRanges": ["05:29-15:14"],"mealLocation": "TAURANGA CBD","mealTime": "41 minutes"},
+"T28302H": {"timeRanges": ["10:29-20:27"],"mealLocation": "TAURANGA CBD","mealTime": "36 minutes"},
+"T28303H": {"timeRanges": ["05:41-14:57"],"mealLocation": "TAURANGA CBD","mealTime": "53 minutes"},
+"T28304H": {"timeRanges": ["11:29-21:27"],"mealLocation": "TAURANGA CBD","mealTime": "60 minutes"},
+"T28305H": {"timeRanges": ["05:59-15:59"],"mealLocation": "TAURANGA CBD","mealTime": "30 minutes"},
+"T28306H": {"timeRanges": ["11:45-21:10"],"mealLocation": "TAURANGA CBD","mealTime": "30 minutes"},
+"T28307H": {"timeRanges": ["06:14-15:46"],"mealLocation": "TAURANGA CBD","mealTime": "48 minutes"},
+"T28309H": {"timeRanges": ["06:29-16:26"],"mealLocation": "TAURANGA CBD","mealTime": "30 minutes"},
+"T28311H": {"timeRanges": ["06:39-16:36"],"mealLocation": "TAURANGA CBD","mealTime": "31 minutes"},
+"T28313H": {"timeRanges": ["07:09-17:02"],"mealLocation": "TAURANGA CBD","mealTime": "51 minutes"},
+"T28315H": {"timeRanges": ["08:23-18:02"],"mealLocation": "TAURANGA CBD","mealTime": "38 minutes"},
+
+
 "T26501T": {"timeRanges": ["06:01-10:39", "14:34-18:28"],"mealLocation": "无","mealTime": "无"}, 
 "T26502T": {"timeRanges": ["05:46-10:38", "13:38-18:41"],"mealLocation": "无","mealTime": "无"}, 
 "T26503T": {"timeRanges": ["06:16-09:26", "13:24-18:18"],"mealLocation": "无","mealTime": "无"}, 
@@ -516,6 +580,8 @@ const shiftDetailsDictionary = {
 "T26523T": {"timeRanges": ["07:20-12:33", "16:08-20:18"],"mealLocation": "无","mealTime": "无"}, 
 "T26524T": {"timeRanges": ["07:33-12:51", "16:09-20:24"],"mealLocation": "无","mealTime": "无"}, 
 "T26525T": {"timeRanges": ["09:09-13:53", "16:21-20:55"],"mealLocation": "无","mealTime": "无"},
+
+
 "T28501T": {"timeRanges": ["05:29-10:01", "13:41-18:02"],"mealLocation": "无","mealTime": "无"},
 "T28502T": {"timeRanges": ["05:59-10:39", "13:59-18:42"],"mealLocation": "无","mealTime": "无"},
 "T28503T": {"timeRanges": ["06:44-11:41", "14:50-19:40"],"mealLocation": "无","mealTime": "无"},
@@ -529,6 +595,42 @@ const shiftDetailsDictionary = {
 "T28403T": {"timeRanges": ["07:32-08:43", "14:20-16:08"],"mealLocation": "无","mealTime": "无"},
 "T28404T": {"timeRanges": ["07:32-08:43", "14:20-16:08"],"mealLocation": "无","mealTime": "无"},
 "T28405T": {"timeRanges": ["07:37-08:48", "14:05-15:53"],"mealLocation": "无","mealTime": "无"},
+
+
+"T26501H": {"timeRanges": ["05:40-10:39", "13:54-18:33"],"mealLocation": "无","mealTime": "无"},
+"T26502H": {"timeRanges": ["05:42-09:46", "13:09-18:06"],"mealLocation": "无","mealTime": "无"},
+"T26503H": {"timeRanges": ["05:47-10:24", "13:18-18:38"],"mealLocation": "无","mealTime": "无"},
+"T26504H": {"timeRanges": ["05:53-11:03", "13:39-18:28"],"mealLocation": "无","mealTime": "无"},
+"T26505H": {"timeRanges": ["06:01-11:05", "13:51-18:41"],"mealLocation": "无","mealTime": "无"},
+"T26506H": {"timeRanges": ["06:14-11:33", "14:40-19:14"],"mealLocation": "无","mealTime": "无"},
+"T26507H": {"timeRanges": ["06:16-11:09", "14:04-19:08"],"mealLocation": "无","mealTime": "无"},
+"T26508H": {"timeRanges": ["06:30-11:24", "14:34-19:26"],"mealLocation": "无","mealTime": "无"},
+"T26509H": {"timeRanges": ["06:32-11:51", "14:38-19:12"],"mealLocation": "无","mealTime": "无"},
+"T26510H": {"timeRanges": ["06:40-11:39", "15:09-19:38"],"mealLocation": "无","mealTime": "无"},
+"T26511H": {"timeRanges": ["06:44-11:54", "14:24-19:10"],"mealLocation": "无","mealTime": "无"},
+"T26512H": {"timeRanges": ["06:45-12:03", "15:19-19:38"],"mealLocation": "无","mealTime": "无"},
+"T26513H": {"timeRanges": ["06:56-12:16", "15:38-19:52"],"mealLocation": "无","mealTime": "无"},
+"T26514H": {"timeRanges": ["06:57-12:05", "14:59-19:50"],"mealLocation": "无","mealTime": "无"},
+"T26515H": {"timeRanges": ["06:59-12:10", "15:19-19:57"],"mealLocation": "无","mealTime": "无"},
+"T26516H": {"timeRanges": ["07:16-12:09", "15:04-20:10"],"mealLocation": "无","mealTime": "无"},
+"T26517H": {"timeRanges": ["07:33-12:36", "15:21-20:18"],"mealLocation": "无","mealTime": "无"},
+"T26518H": {"timeRanges": ["07:41-12:52", "15:59-20:40"],"mealLocation": "无","mealTime": "无"},
+"T26519H": {"timeRanges": ["08:01-12:22", "15:24-20:44"],"mealLocation": "无","mealTime": "无"},
+"T26520H": {"timeRanges": ["08:51-13:53", "16:19-20:54"],"mealLocation": "无","mealTime": "无"},
+"T26521H": {"timeRanges": ["08:59-14:13", "16:13-20:35"],"mealLocation": "无","mealTime": "无"},
+"T26522H": {"timeRanges": ["09:09-14:11", "15:59-20:57"],"mealLocation": "无","mealTime": "无"},
+
+
+"T28501H": {"timeRanges": ["05:41-10:38", "13:45-17:39"],"mealLocation": "无","mealTime": "无"},
+"T28502H": {"timeRanges": ["06:11-11:01", "14:11-18:59"],"mealLocation": "无","mealTime": "无"},
+"T28503H": {"timeRanges": ["06:41-12:01", "14:52-19:06"],"mealLocation": "无","mealTime": "无"},
+"T28504H": {"timeRanges": ["06:44-11:41", "14:56-19:40"],"mealLocation": "无","mealTime": "无"},
+"T28505H": {"timeRanges": ["06:48-11:08", "14:45-19:45"],"mealLocation": "无","mealTime": "无"},
+"T28506H": {"timeRanges": ["06:59-11:49", "14:58-19:57"],"mealLocation": "无","mealTime": "无"},
+"T28507H": {"timeRanges": ["07:29-12:09", "15:01-20:10"],"mealLocation": "无","mealTime": "无"},
+"T28508H": {"timeRanges": ["08:45-13:09", "15:59-20:57"],"mealLocation": "无","mealTime": "无"},
+
+
 "T27301T": {"timeRanges": ["06:24-08:47", "14:28-16:56"],"mealLocation": "无","mealTime": "无"},
 "T27303T": {"timeRanges": ["06:55-08:37", "14:28-16:45"],"mealLocation": "无","mealTime": "无"},
 "T27305T": {"timeRanges": ["06:59-08:46", "14:23-16:11"],"mealLocation": "无","mealTime": "无"},
@@ -564,7 +666,6 @@ const shiftDetailsDictionary = {
 "T27363T": {"timeRanges": [, "12:41-16:41"],"mealLocation": "无","mealTime": "无"},
 "T27364T": {"timeRanges": [, "12:10-16:10"],"mealLocation": "无","mealTime": "无"},
 "T27365T": {"timeRanges": [, "12:30-16:38"],"mealLocation": "无","mealTime": "无"},
-"OFF": {"timeRanges": [],"mealLocation": "无","mealTime": "无"},
 };
 
 
@@ -578,8 +679,8 @@ const shiftOptionsGroups = {
     },
     //  DEPOT 按钮 1 (例如 Greerton) -  School Holiday 开启情况
     "depot1-schoolHoliday": {
-        "weekday": ["SHB1-选项1", "SHB1-选项2", "SHB1-选项3", "SHB1-选项4", "SHB1-选项5"], // SHB1 组备选项 (周一到周五)
-        "weekend": ["SHA1-选项1", "SHA1-选项2", "SHA1-选项3", "SHA1-选项4"]        // SHA1 组备选项 (周六和周日)
+        "weekday": ["T26301H", "T26302H", "T26303H", "T26304H", "T26306H", "T26307H", "T26308H", "T26309H", "T26310H", "T26311H", "T26312H", "T26313H", "T26314H", "T26316H", "T26317H", "T26318H", "T26319H", "T26320H", "T26321H", "T26322H", "T26323H", "T26326H", "T26327H", "T26328H", "T26329H", "T26330H", "T26332H", "T26334H", "T26336H", "T26338H", "T26501H", "T26502H", "T26503H", "T26504H", "T26505H", "T26506H", "T26507H", "T26508H", "T26509H", "T26510H", "T26511H", "T26512H", "T26513H", "T26514H", "T26515H", "T26516H", "T26517H", "T26518H", "T26519H", "T26520H", "T26521H", "T26522H"], // SHB1 组备选项 (周一到周五)
+        "weekend": ["OFF", "T26701", "T26702", "T26703", "T26704", "T26705", "T26706", "T26707", "T26709", "T26711", "T26713", "T26715", "T26717", "T26719", "T26721", "T26723", "T26725", "T26727", "T26729", "T26731", "T26733", "T26735", "T26737", "T26739", "T26741", "T26743", "T26745", "T26747", "T26801", "T26802", "T26803", "T26804", "T26805", "T26806", "T26807", "T26808", "T26810"]        // SHA1 组备选项 (周六和周日)
     },
 
     //  DEPOT 按钮 2 (例如 Papamoa) -  正常情况 (School Holiday 开关 关闭)
@@ -589,8 +690,8 @@ const shiftOptionsGroups = {
     },
     //  DEPOT 按钮 2 (例如 Papamoa) -  School Holiday 开启情况
     "depot2-schoolHoliday": {
-        "weekday": ["SHB2-选项1", "SHB2-选项2", "SHB2-选项3", "SHB2-选项4", "SHB2-选项5"], // SHB2 组备选项 (周一到周五)
-        "weekend": ["SHA2-选项1", "SHA2-选项2", "SHA2-选项3", "SHA2-选项4"]        // SHA2 组备选项 (周六和周日)
+        "weekday": ["T28301H", "T28302H", "T28303H", "T28304H", "T28305H", "T28306H", "T28307H", "T28309H", "T28311H", "T28313H", "T28315H", "T28501H", "T28502H", "T28503H", "T28504H", "T28505H", "T28506H", "T28507H", "T28508H"], // SHB2 组备选项 (周一到周五)
+        "weekend": ["OFF", "T28701", "T28702", "T28703", "T28704", "T28705", "T28707", "T28709", "T28711", "T28713", "T28802", "T28804", "T28806", "T28808"]        // SHA2 组备选项 (周六和周日)
     },
 
     //  DEPOT 按钮 3 (例如 Maleme) -  正常情况 (School Holiday 开关 关闭)
