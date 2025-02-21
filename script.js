@@ -104,86 +104,82 @@ scheduleRows.forEach(row => { // 使用 forEach 循环遍历每一行 <tr> 元�
 
 // **4. 生成 iCalendar (.ics) 文件内容**
 let icsContent = "";
-            icsContent += "BEGIN:VCALENDAR\r\n";
-            icsContent += "VERSION:2.0\r\n";
-            icsContent += "PRODID:-//Your Organization//Your Application//EN\r\n";
-            icsContent += "CALSCALE:GREGORIAN\r\n";
-            icsContent += "METHOD:PUBLISH\r\n";
+icsContent += "BEGIN:VCALENDAR\r\n";
+icsContent += "VERSION:2.0\r\n";
+icsContent += "PRODID:-//Your Organization//Your Application//EN\r\n";
+icsContent += "CALSCALE:GREGORIAN\r\n";
+icsContent += "METHOD:PUBLISH\r\n";
 
+shiftEvents.forEach(event => {
+    console.log("  --- 开始为排班数据对象生成 VEVENT 事件 ---", event);
+    const shiftCode = event.shiftCode;
+    const dateText = event.date;
+    const shiftDetails = shiftDetailsDictionary[shiftCode];
 
-            // **5.3. 循环遍历 shiftEvents 数组， 动态生成 VEVENT 事件**
-            shiftEvents.forEach(event => { // 循环遍历 shiftEvents 数组， event 参数代表当前循环到的排班数据对象
-                console.log("  --- 开始为排班数据对象生成 VEVENT 事件 ---", event); // 调试信息 - 标记开始为当前排班数据对象生成 VEVENT 事件
+    if (shiftDetails && shiftDetails.timeRanges && shiftDetails.timeRanges.length > 0) {
+        // 根据 timeRanges 的数量来判断是否需要添加 AM/PM 后缀
+        shiftDetails.timeRanges.forEach((timeRange, index) => {
+            icsContent += "BEGIN:VEVENT\r\n";
 
-                const shiftCode = event.shiftCode; // 从排班数据对象中 获取班次代码
-                const dateText = event.date;       // 从排班数据对象中 获取日期文本
+            // 生成 UID
+            const uid = generateUuid();
+            icsContent += `UID:${uid}\r\n`;
+            console.log("    生成的 UID:", uid);
 
-                icsContent += "BEGIN:VEVENT\r\n"; // 添加 VEVENT 开始标记
+            // 生成 DTSTAMP
+            const now = new Date();
+            const dtstamp = formatDateTimeToUTCString(now);
+            icsContent += `DTSTAMP:${dtstamp}\r\n`;
+            console.log("    生成的 DTSTAMP:", dtstamp);
 
-                // **5.3.1. 生成 UID -  使用 UUID 算法生成唯一 ID**
-                const uid = generateUuid(); // 调用 generateUuid() 函数生成 UUID
-                icsContent += `UID:${uid}\r\n`;   // 添加 UID 属性， 值为生成的 UUID
-                console.log("    生成的 UID:", uid); // 调试信息 - 输出生成的 UID
+            // 处理时间段
+            const [startTimeStr, endTimeStr] = timeRange.split('-');
+            const startDateTime = createUTCDateFromDateTextAndTime(dateText, startTimeStr);
+            const endDateTime = createUTCDateFromDateTextAndTime(dateText, endTimeStr);
 
-                // **5.3.2. 生成 DTSTAMP -  使用当前时间**
-                const now = new Date(); // 创建 Date 对象，表示当前日期和时间
-                const dtstamp = formatDateTimeToUTCString(now); // 调用 formatDateTimeToUTCString() 函数格式化当前时间为 UTC 字符串
-                icsContent += `DTSTAMP:${dtstamp}\r\n`; // 添加 DTSTAMP 属性， 值为当前时间的 UTC 字符串
-                console.log("    生成的 DTSTAMP:", dtstamp); // 调试信息 - 输出生成的 DTSTAMP
+            if (startDateTime && endDateTime) {
+                const dtstart = formatDateTimeToUTCString(startDateTime);
+                const dtend = formatDateTimeToUTCString(endDateTime);
+                console.log(`创建 DTSTART: ${dtstart} (原始: ${startDateTime.toISOString()})`);
+                console.log(`创建 DTEND: ${dtend} (原始: ${endDateTime.toISOString()})`);
+                
+                icsContent += `DTSTART:${dtstart}\r\n`;
+                icsContent += `DTEND:${dtend}\r\n`;
+            } else {
+                console.warn(`    警告: 时间段 "${timeRange}" 的开始时间或结束时间 Date 对象创建失败! 跳过当前时间段.`);
+                icsContent += "END:VEVENT\r\n";
+                return; // 跳过当前时间段
+            }
 
-                // **5.3.3. 生成 DTSTART 和 DTEND -  根据班次代码和日期文本， 从 shiftDetailsDictionary 中查找时间段**
-                const shiftDetails = shiftDetailsDictionary[shiftCode]; // 根据班次代码， 从 shiftDetailsDictionary 中查找班次详情
-                if (shiftDetails && shiftDetails.timeRanges && shiftDetails.timeRanges.length > 0) { // **判断  是否  找到班次详情，  并且  timeRanges 属性存在  且  不为空**
-                    shiftDetails.timeRanges.forEach(timeRange => { // 循环遍历 timeRanges 数组 (一个班次可能有多段时间段)
-                        const [startTimeStr, endTimeStr] = timeRange.split('-'); // 将时间段字符串 (例如 "07:07-11:49")  分割为 开始时间和结束时间字符串
+            // 根据是否存在多个时间段来添加 SUMMARY 后缀
+            let summarySuffix = "";
+            if (shiftDetails.timeRanges.length === 2) {
+                summarySuffix = index === 0 ? " AM" : " PM";
+            }
+            icsContent += `SUMMARY:${shiftCode}${summarySuffix}\r\n`;
+            console.log("    生成的 SUMMARY:", shiftCode + summarySuffix);
 
-                        const startDateTime = createUTCDateFromDateTextAndTime(dateText, startTimeStr); // 调用 createUTCDateFromDateTextAndTime() 函数， 将日期文本和开始时间字符串 转换为 UTC Date 对象
-                        const endDateTime = createUTCDateFromDateTextAndTime(dateText, endTimeStr);   // 调用 createUTCDateFromDateTextAndTime() 函数， 将日期文本和结束时间字符串 转换为 UTC Date 对象
+            // 生成 DESCRIPTION
+            let description = "";
+            if (shiftDetails) {
+                description += `用餐地点: ${shiftDetails.mealLocation || '无'}， 用餐时间: ${shiftDetails.mealTime || '无'}\n`;
+            } else {
+                description += `班次代码 "${shiftCode}" 详情未找到.\n`;
+            }
+            icsContent += `DESCRIPTION:${description}\r\n`;
+            console.log("    生成的 DESCRIPTION:", description);
 
-                        if (startDateTime && endDateTime) { // **判断  开始时间和结束时间 Date 对象  是否  成功创建**
-                            const dtstart = formatDateTimeToUTCString(startDateTime); // 格式化 开始时间 Date 对象 为 UTC 字符串
-                            const dtend = formatDateTimeToUTCString(endDateTime);     // 格式化 结束时间 Date 对象 为 UTC 字符串
-                            console.log(`创建 DTSTART: ${dtstart} (原始: ${startDateTime.toISOString()})`);
-                            console.log(`创建 DTEND: ${dtend} (原始: ${endDateTime.toISOString()})`);
-                            
-                            icsContent += `DTSTART:${dtstart}\r\n`; // 添加 DTSTART 属性， 值为 开始时间的 UTC 字符串
-                            icsContent += `DTEND:${dtend}\r\n`;     // 添加 DTEND 属性， 值为 结束时间的 UTC 字符串
+            icsContent += "END:VEVENT\r\n";
+            console.log("  --- 单个 VEVENT 事件生成完成 ---");
+        });
+    } else {
+        console.warn(`    警告: 班次代码 "${shiftCode}" 在 shiftDetailsDictionary 中找不到详情 或 没有定义时间段! 跳过该排班数据.`);
+    }
+});
 
-                            console.log(`    时间段: ${timeRange}`); // 调试信息 - 输出时间段字符串
-                            console.log("      生成的 DTSTART:", dtstart); // 调试信息 - 输出生成的 DTSTART
-                            console.log("      生成的 DTEND:", dtend);   // 调试信息 - 输出生成的 DTEND
-                        } else { // 如果  开始时间 或 结束时间 Date 对象 创建失败
-                            console.warn(`    警告:  时间段 "${timeRange}" 的 开始时间或结束时间 Date 对象创建失败!  跳过当前时间段.`); // 输出警告信息
-                        }
+icsContent += "END:VCALENDAR\r\n";
+console.log("生成的 .ics 文件内容:\n", icsContent);
 
-                    }); // shiftDetails.timeRanges.forEach(timeRange => { ... }); 循环结束
-                } else { // 如果  shiftDetailsDictionary 中  没有找到  当前班次代码的详情  或  timeRanges 属性不存在 或 为空
-                    console.warn(`    警告:  班次代码 "${shiftCode}" 在 shiftDetailsDictionary 中找不到详情 或 没有定义时间段!  跳过添加时间段.`); // 输出警告信息
-                }
-
-
-                // **5.3.4. 生成 SUMMARY -  使用班次代码**
-                icsContent += `SUMMARY:${shiftCode}\r\n`; // 添加 SUMMARY 属性， 值为班次代码
-                console.log("    生成的 SUMMARY:", shiftCode); // 调试信息 - 输出生成的 SUMMARY
-
-                // **5.3.5. 生成 DESCRIPTION - 使用班次详情 (用餐地点, 用餐时间)**
-                let description = ""; // 初始化一个空字符串，用于存储 DESCRIPTION 内容
-if (shiftDetails) { // **判断  是否  找到班次详情**
-    description += `用餐地点: ${shiftDetails.mealLocation || '无'}， 用餐时间: ${shiftDetails.mealTime || '无'}\n`; // 添加 用餐地点 和 用餐时间， 使用逗号+空格分隔，并换行
-} else { // 如果  shiftDetailsDictionary 中  没有找到  当前班次代码的详情
-    description += `班次代码 "${shiftCode}" 详情未找到.\n`; // 添加 提示信息， 说明班次详情未找到
-}
-icsContent += `DESCRIPTION:${description}\r\n`; // 添加 DESCRIPTION 属性， 值为生成的描述字符串
-console.log("    生成的 DESCRIPTION:", description); // 调试信息 - 输出生成的 DESCRIPTION
-
-                icsContent += "END:VEVENT\r\n"; // 添加 VEVENT 结束标记
-                console.log("  --- VEVENT 事件生成完成 ---"); // 调试信息 - 标记 VEVENT 事件生成完成
-
-            }); //  shiftEvents.forEach(event => { ... }); 循环 结束
-
-
-// **4.3. 添加 iCalendar 文件尾**
-icsContent += "END:VCALENDAR\r\n";   // 添加 VCALENDAR 结束标记
 
 
 console.log("生成的 .ics 文件内容:\n", icsContent); // 调试信息 -  输出生成的 .ics 文件内容到控制台
