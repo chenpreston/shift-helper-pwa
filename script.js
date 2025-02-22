@@ -1,4 +1,4 @@
-// script.js 文件
+// script.js 文件1
 console.log("script.js 文件正在运行..."); // 页面加载时在控制台输出信息，确认 script.js 文件已加载
 
 import { shiftOptionsGroups, shiftDetailsDictionary } from './data.js';
