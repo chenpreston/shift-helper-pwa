@@ -1,7 +1,7 @@
 // script.js 文件
 
 console.log("script.js 文件正在运行..."); // 页面加载时在控制台输出信息，确认 script.js 文件已加载
-
+console.log('v3');
 document.addEventListener('DOMContentLoaded', function() {
     //  当 HTML 文档完全加载完成后执行的代码
 
