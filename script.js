@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log("DOMContentLoaded 事件触发，DOM 已加载完成");
     
-    const version = 'v0.3.0';
+    const version = 'v0.3.1';
     document.querySelector('#about-section .about-content').innerHTML += `<p>Current version: ${version}</p>`;
     
     
