@@ -286,3 +286,66 @@ input:checked + .slider:before {
 #add-to-calendar-button:hover {
     background-color: #0056b3; /* 鼠标悬停时背景色加深 */
 }
+
+
+#about-button {
+    margin-top: 30px; /* 增大到 30px 或其他值 */
+}
+
+
+
+#back-to-depot-from-about {
+    padding: 8px 30px;
+    border: none; /* 移除默认边框 */
+    border-radius: 8px;
+    background-color: #999999; /* 蓝色背景 */
+    color: white; /* 白色文字 */
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+}
+
+#back-to-depot-from-about:hover {
+    background-color: #666666; /* 鼠标悬停时背景色加深 */
+}
+
+/* style.css */
+.about-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+}
+
+.about-content h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.about-content p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.about-content ul {
+    margin: 10px 0 10px 20px;
+}
+
+.about-content li {
+    margin-bottom: 8px;
+}
+
+#back-to-depot-from-about {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#back-to-depot-from-about:hover {
+    background-color: #555;
+}
