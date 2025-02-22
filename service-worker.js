@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-site-cache-v3';
+const CACHE_NAME = 'my-site-cache-v4';
 const urlsToCache = [
   '/', // 改为明确路径
   '/index.html',
