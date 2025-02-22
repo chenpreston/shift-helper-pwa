@@ -1,4 +1,4 @@
-const CACHE_NAME = 'my-site-cache-v1';
+const CACHE_NAME = 'shift-helper-cache-v0.3.0';
 const urlsToCache = [
   '/',
   '/index.html',

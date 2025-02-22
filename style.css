@@ -349,3 +349,14 @@ input:checked + .slider:before {
 #back-to-depot-from-about:hover {
     background-color: #555;
 }
+
+
+/* style.css */
+.about-content a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.about-content a:hover {
+    text-decoration: underline;
+}
