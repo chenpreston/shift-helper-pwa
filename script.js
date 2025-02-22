@@ -192,9 +192,9 @@ shiftEvents.forEach(event => {
             // 生成 DESCRIPTION
             let description = "";
             if (shiftDetails) {
-                description += `用餐地点: ${shiftDetails.mealLocation || '无'}， 用餐时间: ${shiftDetails.mealTime || '无'}\n`;
+                description += `Meal Location: ${shiftDetails.mealLocation || 'None'}， Meal Time: ${shiftDetails.mealTime || 'None'}\n`;
             } else {
-                description += `班次代码 "${shiftCode}" 详情未找到.\n`;
+                description += `Shift Number "${shiftCode}" 详情未找到.\n`;
             }
             icsContent += `DESCRIPTION:${description}\r\n`;
             console.log("    生成的 DESCRIPTION:", description);
