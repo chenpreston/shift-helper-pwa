@@ -1,4 +1,4 @@
-const CACHE_NAME = "shift-helper-cache-v0.3.2";
+const CACHE_NAME = "shift-helper-cache-v0.3.8";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -85,4 +85,10 @@ self.addEventListener("activate", function (event) {
       .then(() => self.clients.claim())
       .catch((error) => console.error("Activation failed:", error))
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
 });

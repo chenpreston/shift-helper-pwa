@@ -1,14 +1,33 @@
 // script.js 文件1
 console.log("script.js 文件正在运行..."); // 页面加载时在控制台输出信息，确认 script.js 文件已加载
-
 import { shiftOptionsGroups, shiftDetailsDictionary } from "./data.js";
+
+const version = "v0.3.8";
+
+// iOS 和 Safari 检测
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+// 检查是否已显示过提示（使用 localStorage 避免重复弹出）
+const hasShownPrompt = localStorage.getItem('iosSafariPromptShown');
+
+if (isIOS && !isSafari && !hasShownPrompt) {
+  // 弹出提示框
+  alert(
+    'Notice for iOS Users:\n\nFor the best experience, please open this app in Safari and add it to your Home Screen.\n\nSteps:\n1. Open in Safari\n2. Tap the Share button (↑)\n3. Select "Add to Home Screen"'
+  );
+  // 标记已显示提示
+  localStorage.setItem('iosSafariPromptShown', 'true');
+}
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   //  当 HTML 文档完全加载完成后执行的代码
 
   console.log("DOMContentLoaded 事件触发，DOM 已加载完成");
 
-  const version = "v0.3.2";
   document.querySelector(
     "#about-section .about-content"
   ).innerHTML += `<p>Current version: ${version}</p>`;
@@ -490,10 +509,45 @@ if ("serviceWorker" in navigator) {
   console.log("script.js: Registering Service Worker");
   navigator.serviceWorker
     .register("./service-worker.js")
-    .then((reg) => console.log("script.js: Service Worker registered:", reg))
+    .then((registration) => {
+      console.log("script.js: Service Worker registered:", registration);
+
+      // 检查是否有等待中的新 Service Worker
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener("statechange", () => {
+          if (
+            newWorker.state === "installed" &&
+            navigator.serviceWorker.controller
+          ) {
+            // 新 Service Worker 已安装，且当前有控制器（旧 Service Worker）
+            console.log("New Service Worker is waiting to activate");
+            // 提示用户刷新或自动激活
+            if (
+              confirm(
+                'A new version is available. Refresh to update?'
+              )
+            ) {
+              newWorker.postMessage({ action: "skipWaiting" });
+            }
+          }
+        });
+      });
+    })
     .catch((err) =>
       console.error("script.js: Service Worker registration failed:", err)
     );
-} else {
-  console.log("script.js: Service Worker not supported");
+
+  // 监听控制器变化，刷新页面以使用新缓存
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    console.log("Controller changed, reloading to use new Service Worker");
+    window.location.reload();
+  });
 }
+
+// 接收 Service Worker 的消息
+navigator.serviceWorker.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "skipWaiting") {
+    console.log("Skipping waiting via message");
+  }
+});
