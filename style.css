@@ -1,362 +1,355 @@
 body {
-    font-family: sans-serif;
-    margin: 0; /* 清除默认 margin */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* 最小高度 100vh (viewport height)，让内容垂直居中 */
-    background-color: #f4f7f9; /* 浅灰色背景 */
+  font-family: sans-serif;
+  margin: 0; /* 清除默认 margin */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 最小高度 100vh (viewport height)，让内容垂直居中 */
+  background-color: #f4f7f9; /* 浅灰色背景 */
 }
 
 #depot-selection-container {
-    width: 80%; /* 容器宽度 80% */
-    max-width: 400px; /* 最大宽度 400px，限制在小屏幕下 */
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px; /* 圆角边框 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*  হালকা阴影效果 */
-    text-align: center; /* 容器内文字居中 */
+  width: 80%; /* 容器宽度 80% */
+  max-width: 400px; /* 最大宽度 400px，限制在小屏幕下 */
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px; /* 圆角边框 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*  হালকা阴影效果 */
+  text-align: center; /* 容器内文字居中 */
 }
 
 header {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 h1 {
-    color: #333;
+  color: #333;
 }
 
 #depot-prompt {
-    margin-bottom: 30px;
-    font-size: 1.2em; /* 字体大小 1.2 倍 */
-    color: #555;
+  margin-bottom: 30px;
+  font-size: 1.2em; /* 字体大小 1.2 倍 */
+  color: #555;
 }
 
 /*  自定义 Switch 样式 (参考 iOS Switch 风格) */
 #school-holiday-setting {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* label 和 switch 两端对齐 */
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* label 和 switch 两端对齐 */
+  margin-bottom: 20px;
 }
 
 #school-holiday-setting label[for="school-holiday-switch"] {
-    text-align: left; /* label 文字左对齐 */
-    margin-right: 15px;
-    color: #333;
+  text-align: left; /* label 文字左对齐 */
+  margin-right: 15px;
+  color: #333;
 }
 
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 28px;
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
 }
 
 .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s; /* 滑块动画过渡时间 0.4 秒 */
-    border-radius: 28px; /* 圆角 */
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s; /* 滑块动画过渡时间 0.4 秒 */
+  border-radius: 28px; /* 圆角 */
 }
 
 .slider:before {
-    position: absolute;
-    content: "";
-    height: 20px;
-    width: 20px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s; /* 滑块小圆点动画过渡时间 0.4 秒 */
-    border-radius: 50%; /* 圆形 */
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s; /* 滑块小圆点动画过渡时间 0.4 秒 */
+  border-radius: 50%; /* 圆形 */
 }
 
 input:checked + .slider {
-    background-color: #2196F3; /* Switch 选中状态背景色 (蓝色) */
+  background-color: #2196f3; /* Switch 选中状态背景色 (蓝色) */
 }
 
 input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3; /* Switch focus 状态阴影 */
+  box-shadow: 0 0 1px #2196f3; /* Switch focus 状态阴影 */
 }
 
 input:checked + .slider:before {
-    transform: translateX(22px); /* Switch 选中状态滑块小圆点水平移动 22px */
+  transform: translateX(22px); /* Switch 选中状态滑块小圆点水平移动 22px */
 }
 
 .slider.round {
-    border-radius: 34px;
+  border-radius: 34px;
 }
 
 .slider.round:before {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
-
 #depot-buttons {
-    display: flex;
-    flex-direction: column; /* 垂直排列按钮 */
-    gap: 10px;
+  display: flex;
+  flex-direction: column; /* 垂直排列按钮 */
+  gap: 10px;
 }
 
 #depot-buttons button {
-    padding: 12px 20px;
-    border: none; /* 移除默认边框 */
-    border-radius: 8px;
-    background-color: #007bff; /* 蓝色背景 */
-    color: white; /* 白色文字 */
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  padding: 12px 20px;
+  border: none; /* 移除默认边框 */
+  border-radius: 8px;
+  background-color: #007bff; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
 }
 
 #depot-buttons button:hover {
-    background-color: #0056b3; /* 鼠标悬停时背景色加深 */
+  background-color: #0056b3; /* 鼠标悬停时背景色加深 */
 }
 
 /*  日期选择器 section 样式 (可选) */
 #week-date-selector {
-    margin-top: 20px; /*  日期选择器 section  顶部外边距，与 DEPOT 按钮区域隔开距离 */
-    text-align: center; /*  内部文字居中对齐 */
+  margin-top: 20px; /*  日期选择器 section  顶部外边距，与 DEPOT 按钮区域隔开距离 */
+  text-align: center; /*  内部文字居中对齐 */
 }
 
 #week-date-selector p {
-    margin-bottom: 10px; /*  提示文字  下方外边距， 与日期 input 隔开距离 */
-    color: #555;
+  margin-bottom: 10px; /*  提示文字  下方外边距， 与日期 input 隔开距离 */
+  color: #555;
 }
 
 #week-date-selector input[type="date"] {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
 }
 
 /*  日期列表视图 (Schedule Week View) 样式  */
 #schedule-week-view {
-    margin-top: 20px; /* 与日期选择器 section 保持一定间距 */
-    text-align: center;
+  margin-top: 20px; /* 与日期选择器 section 保持一定间距 */
+  text-align: center;
 }
 
 #schedule-week-view h2 {
-    margin-bottom: 20px;
-    color: #555;
-    font-size: 1.1em;
-    font-weight: normal; /* 取消标题默认加粗 */
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 1.1em;
+  font-weight: normal; /* 取消标题默认加粗 */
 }
 
 #schedule-table-view-container {
-    overflow-x: auto; /* 水平滚动条，如果表格内容超出容器宽度 */
+  overflow-x: auto; /* 水平滚动条，如果表格内容超出容器宽度 */
 }
 
 #schedule-week-view table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
 #schedule-week-view th,
 #schedule-week-view td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
 }
 
 #schedule-week-view th {
-    background-color: #f0f0f0;
-    font-weight: bold;
+  background-color: #f0f0f0;
+  font-weight: bold;
 }
 
 #schedule-week-view thead th {
-    font-size: 0.9em; /* 表头字体稍小 */
-    color: #777;
+  font-size: 0.9em; /* 表头字体稍小 */
+  color: #777;
 }
 
-#schedule-week-view thead th[colspan="7"] {  /*  “公共假日” 表头  */
-    font-size: 1em; /* "公共假日" 表头字体稍大一些 */
-    color: #333;
+#schedule-week-view thead th[colspan="7"] {
+  /*  “公共假日” 表头  */
+  font-size: 1em; /* "公共假日" 表头字体稍大一些 */
+  color: #333;
 }
-
 
 #schedule-week-view tbody th {
-    text-align: left; /*  日期/星期几  列  文字左对齐 */
-    font-weight: normal; /*  取消  日期/星期几  列  默认加粗 */
-    color: #333;
+  text-align: left; /*  日期/星期几  列  文字左对齐 */
+  font-weight: normal; /*  取消  日期/星期几  列  默认加粗 */
+  color: #333;
 }
 
-#schedule-week-view tbody th[scope="row"] { /*  为  日期/星期几  列  设置 scope="row"  属性后， 可以使用此选择器  */
-    background-color: #f9f9f9; /*  日期/星期几  列  背景色  */
+#schedule-week-view tbody th[scope="row"] {
+  /*  为  日期/星期几  列  设置 scope="row"  属性后， 可以使用此选择器  */
+  background-color: #f9f9f9; /*  日期/星期几  列  背景色  */
 }
 
 #schedule-week-view tbody td {
-    padding: 6px; /*  数据单元格内边距  稍微小一些  */
+  padding: 6px; /*  数据单元格内边距  稍微小一些  */
 }
-
 
 /*  调整  Switch 开关  在表格单元格中的样式  */
 #schedule-week-view tbody td .switch {
-    margin: 0 auto; /*  水平居中  Switch 开关  */
-    display: block; /*  让  margin: auto  水平居中生效  */
+  margin: 0 auto; /*  水平居中  Switch 开关  */
+  display: block; /*  让  margin: auto  水平居中生效  */
 }
 
-#schedule-week-view tbody td label[class="switch"] { /*  覆盖  之前  全局  .switch label  选择器的样式，  避免  影响其他地方的  Switch  样式  */
-    margin-bottom: 0; /*  移除  Switch  label  默认的  下外边距  (如果有) */
+#schedule-week-view tbody td label[class="switch"] {
+  /*  覆盖  之前  全局  .switch label  选择器的样式，  避免  影响其他地方的  Switch  样式  */
+  margin-bottom: 0; /*  移除  Switch  label  默认的  下外边距  (如果有) */
 }
 /*  调整表格 Shift 列的下拉菜单样式  */
 #schedule-week-view tbody td select.shift-selector {
-    width: 100%; /* 下拉菜单宽度 100% 填充单元格 */
-    padding: 6px; /* 下拉菜单内边距 */
-    border: 1px solid #ccc; /* 下拉菜单边框 */
-    border-radius: 4px; /* 下拉菜单圆角 */
-    -webkit-appearance: none; /* 移除 Safari 和 Chrome 浏览器默认样式 */
-    -moz-appearance: none; /* 移除 Firefox 浏览器默认样式 */
-    appearance: none; /* 移除其他浏览器默认样式 */
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>"); /* 添加下拉箭头 */
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 5px; /* 调整下拉箭头垂直位置 */
-    padding-right: 25px; /* 留出空间显示下拉箭头 */
-    font-size: 0.9em; /* 下拉菜单字体稍小 */
+  width: 100%; /* 下拉菜单宽度 100% 填充单元格 */
+  padding: 6px; /* 下拉菜单内边距 */
+  border: 1px solid #ccc; /* 下拉菜单边框 */
+  border-radius: 4px; /* 下拉菜单圆角 */
+  -webkit-appearance: none; /* 移除 Safari 和 Chrome 浏览器默认样式 */
+  -moz-appearance: none; /* 移除 Firefox 浏览器默认样式 */
+  appearance: none; /* 移除其他浏览器默认样式 */
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>"); /* 添加下拉箭头 */
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px; /* 调整下拉箭头垂直位置 */
+  padding-right: 25px; /* 留出空间显示下拉箭头 */
+  font-size: 0.9em; /* 下拉菜单字体稍小 */
 }
 
 /*  鼠标悬停和聚焦状态样式 (可选) */
 #schedule-week-view tbody td select.shift-selector:hover,
 #schedule-week-view tbody td select.shift-selector:focus {
-    border-color: #888; /* 鼠标悬停/聚焦时边框颜色 */
-    outline: none; /* 移除默认 focus 轮廓线 */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); /* 添加轻微阴影效果 */
+  border-color: #888; /* 鼠标悬停/聚焦时边框颜色 */
+  outline: none; /* 移除默认 focus 轮廓线 */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); /* 添加轻微阴影效果 */
 }
 
-
-
 #back-to-depot-selection {
-    padding: 8px 20px;
-    border: none; /* 移除默认边框 */
-    border-radius: 8px;
-    background-color: #999999; /* 蓝色背景 */
-    color: white; /* 白色文字 */
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  padding: 8px 20px;
+  border: none; /* 移除默认边框 */
+  border-radius: 8px;
+  background-color: #999999; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
 }
 
 #back-to-depot-selection:hover {
-    background-color: #666666; /* 鼠标悬停时背景色加深 */
+  background-color: #666666; /* 鼠标悬停时背景色加深 */
 }
 
-
 #back-to-date-selector-button {
-    padding: 8px 20px;
-    border: none; /* 移除默认边框 */
-    border-radius: 8px;
-    background-color: #999999; /* 蓝色背景 */
-    color: white; /* 白色文字 */
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  padding: 8px 20px;
+  border: none; /* 移除默认边框 */
+  border-radius: 8px;
+  background-color: #999999; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
 }
 
 #back-to-date-selector-button:hover {
-    background-color: #666666; /* 鼠标悬停时背景色加深 */
+  background-color: #666666; /* 鼠标悬停时背景色加深 */
 }
 
 #add-to-calendar-button {
-    padding: 8px 20px;
-    border: none; /* 移除默认边框 */
-    border-radius: 8px;
-    background-color: #007bff; /* 蓝色背景 */
-    color: white; /* 白色文字 */
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  padding: 8px 20px;
+  border: none; /* 移除默认边框 */
+  border-radius: 8px;
+  background-color: #007bff; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
 }
 
 #add-to-calendar-button:hover {
-    background-color: #0056b3; /* 鼠标悬停时背景色加深 */
+  background-color: #0056b3; /* 鼠标悬停时背景色加深 */
 }
-
 
 #about-button {
-    margin-top: 30px; /* 增大到 30px 或其他值 */
+  margin-top: 30px; /* 增大到 30px 或其他值 */
 }
 
-
-
 #back-to-depot-from-about {
-    padding: 8px 30px;
-    border: none; /* 移除默认边框 */
-    border-radius: 8px;
-    background-color: #999999; /* 蓝色背景 */
-    color: white; /* 白色文字 */
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  padding: 8px 30px;
+  border: none; /* 移除默认边框 */
+  border-radius: 8px;
+  background-color: #999999; /* 蓝色背景 */
+  color: white; /* 白色文字 */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
 }
 
 #back-to-depot-from-about:hover {
-    background-color: #666666; /* 鼠标悬停时背景色加深 */
+  background-color: #666666; /* 鼠标悬停时背景色加深 */
 }
 
 /* style.css */
 .about-content {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-    padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 20px;
 }
 
 .about-content h3 {
-    margin-top: 20px;
-    color: #333;
+  margin-top: 20px;
+  color: #333;
 }
 
 .about-content p {
-    margin: 10px 0;
-    line-height: 1.5;
+  margin: 10px 0;
+  line-height: 1.5;
 }
 
 .about-content ul {
-    margin: 10px 0 10px 20px;
+  margin: 10px 0 10px 20px;
 }
 
 .about-content li {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 #back-to-depot-from-about {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #back-to-depot-from-about:hover {
-    background-color: #555;
+  background-color: #555;
 }
-
 
 /* style.css */
 .about-content a {
-    color: #0066cc;
-    text-decoration: none;
+  color: #0066cc;
+  text-decoration: none;
 }
 
 .about-content a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
