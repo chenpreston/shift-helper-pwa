@@ -1,10 +1,11 @@
-const CACHE_NAME = "shift-helper-cache-v0.3.8";
+const CACHE_NAME = "shift-helper-cache-v0.4.0"; // 更新缓存时修改版本号
 const urlsToCache = [
   "/",
   "/index.html",
   "/style.css",
   "/script.js",
-  "/data.js",
+  "/shifts.csv",
+  "/options.csv",
   "/assets/icons/icon-192x192.png",
   "/assets/icons/icon-512x512.png",
 ];
@@ -87,8 +88,8 @@ self.addEventListener("activate", function (event) {
   );
 });
 
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.action === 'skipWaiting') {
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "skipWaiting") {
     self.skipWaiting();
   }
 });
