@@ -1,4 +1,4 @@
-const CACHE_NAME = "shift-helper-cache-v0.5.0"; // 更新缓存时修改版本号
+const CACHE_NAME = "shift-helper-cache-v0.5.1"; // 更新缓存时修改版本号
 const urlsToCache = [
   "/",
   "/index.html",
@@ -8,6 +8,8 @@ const urlsToCache = [
   "/options.csv",
   "/assets/icons/icon-192x192.png",
   "/assets/icons/icon-512x512.png",
+  "/assets/icons/GitHub_logo.png",
+  "/assets/icons/github-mark.svg",
 ];
 
 // 安装事件
