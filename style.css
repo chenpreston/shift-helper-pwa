@@ -19,16 +19,28 @@ body {
 }
 
 header {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 h1 {
+  font-size: 10;
+  font-weight: bold;
   color: #333;
 }
 
-#depot-prompt {
-  margin-bottom: 30px;
-  font-size: 1.2em; /* 字体大小 1.2 倍 */
+#version {
+  padding: 1px;
+  margin-bottom: 0px;
+}
+
+#depot-prompt p:last-child {
+  margin-bottom: 20px;
+}
+
+#depot-prompt p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 0.5em; /* 字体大小 1.2 倍 */
   color: #555;
 }
 
@@ -104,6 +116,12 @@ input:checked + .slider:before {
 }
 
 #depot-buttons {
+  display: flex;
+  flex-direction: column; /* 垂直排列按钮 */
+  gap: 10px;
+}
+
+#drive-shifts, #standby-shifts {
   display: flex;
   flex-direction: column; /* 垂直排列按钮 */
   gap: 10px;
@@ -352,4 +370,41 @@ input:checked + .slider:before {
 
 .about-content a:hover {
   text-decoration: underline;
+}
+
+legend {
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+#github-logo {
+  display: block;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+a {
+  text-decoration: none;
+  color: #0366d6; /* GitHub蓝色 */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#update-history {
+  text-align: center;
+}
+
+#github-mark {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }

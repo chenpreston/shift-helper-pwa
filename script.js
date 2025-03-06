@@ -26,7 +26,7 @@ function parseOptionsCSV(data) {
     const [depot, dayType, schoolHoliday] =
       header
         .match(
-          /(greerton|papamoa|maleme)(Weekday|Weekend)SchoolHoliday(True|False)/i
+          /(greerton|papamoa|maleme|standby)(Weekday|Weekend)SchoolHoliday(True|False)/i
         )
         ?.slice(1) || [];
     if (!depot) return;
@@ -95,21 +95,23 @@ async function initData() {
 
 initData().catch((error) => console.error("Initialization failed:", error));
 
-const version = "v0.4.0"; //版本
+const appVersion = "v0.5.0"; //app版本
+const shiftDetailsVersion = "03.06.2025"
 
 document.addEventListener("DOMContentLoaded", function () {
   // 当 HTML 文档完全加载完成后执行的代码
   console.log("DOMContentLoaded 事件触发，DOM 已加载完成");
 
-  document.querySelector(
-    "#about-section .about-content"
-  ).innerHTML += `<p>Current version: ${version}</p>`; // 在About页面显示版本号
+  document.querySelector("#depot-prompt").innerHTML += `<p>app version: ${appVersion}</p>`; // 在About页面显示版本号
+document.querySelector("#depot-prompt").innerHTML += `<p>shift details database version: ${shiftDetailsVersion}</p>`; // 在About页面显示版本号
+
 
   // 获取 DOM 元素 (getElementById)
   const schoolHolidaySwitch = document.getElementById("school-holiday-switch"); // school holiday开关
   const greertonDepotButton = document.getElementById("greerton-depot"); // Greerton DEPOT 按钮
   const papamoaDepotButton = document.getElementById("papamoa-depot"); // Papamoa DEPOT 按钮
   const malemeDepotButton = document.getElementById("maleme-depot"); // Maleme DEPOT 按钮
+  const standbyDepotButton = document.getElementById("standby-depot"); // Standby DEPOT 按钮
   const backToDepotSelectionButton = document.getElementById("back-to-depot-selection"); // "返回" 按钮
   const depotSelectionUI = document.getElementById("depot-selection-ui"); // DEPOT 选择界面容器
   const weekDateSelector = document.getElementById("week-date-selector"); // 日期选择器 section 元素
@@ -153,8 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   //  3.  存储当前 DEPOT 选择 和 School Holiday 开关状态
-let currentDepot = null; //  存储当前选择的 DEPOT (例如 "depot1", "depot2", "depot3"， 默认为 null)
-let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true=开启, false=关闭， 默认为 false)
+  let currentDepot = null; //  存储当前选择的 DEPOT (例如 "depot1", "depot2", "depot3"， 默认为 null)
+  let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true=开启, false=关闭， 默认为 false)
 
   // 3. DEPOT 按钮点击事件 - 添加点击事件监听器 (显示日期选择器，隐藏DEPOT选择界面)
   greertonDepotButton.addEventListener("click", function () {
@@ -181,6 +183,16 @@ let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true
     console.log("Maleme DEPOT 按钮被点击了");
     currentDepot = "maleme"; // **更新当前 DEPOT 选择为 "depot3" (或者你定义的键名)**
     //  后续完善：  记录选择的 DEPOT (例如 Maleme)
+
+    depotSelectionUI.style.display = "none"; // 隐藏 DEPOT 选择 UI 容器
+    weekDateSelector.style.display = "block"; // 显示日期选择器 section
+    scheduleWeekView.style.display = "none"; // **新增: 确保日期列表视图 初始状态是隐藏的**
+  });
+
+  standbyDepotButton.addEventListener("click", function () {
+    console.log("Standby DEPOT 按钮被点击了");
+    currentDepot = "standby"; // **更新当前 DEPOT 选择为 "depot4" (或者你定义的键名)**
+    //  后续完善：  记录选择的 DEPOT (例如 Standby)
 
     depotSelectionUI.style.display = "none"; // 隐藏 DEPOT 选择 UI 容器
     weekDateSelector.style.display = "block"; // 显示日期选择器 section
@@ -245,86 +257,86 @@ let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true
 
   // **8.  新增函数:  动态更新日期列表视图表格的 "Shift" 列下拉菜单选项 -  函数定义**
   function updateShiftOptionsInTableView() {
-  console.log("updateShiftOptionsInTableView() 函数被调用");
+    console.log("updateShiftOptionsInTableView() 函数被调用");
 
-  // 动态计算 currentOptionsGroupKey
-  const currentOptionsGroupKey = isSchoolHolidayEnabled ? `${currentDepot}-schoolHoliday` : currentDepot;
-  console.log("shiftOptionsGroups:", shiftOptionsGroups);
-  console.log("currentDepot:", currentDepot);
-  console.log("isSchoolHolidayEnabled:", isSchoolHolidayEnabled);
-  console.log("currentOptionsGroupKey:", currentOptionsGroupKey);
+    // 动态计算 currentOptionsGroupKey
+    const currentOptionsGroupKey = isSchoolHolidayEnabled ? `${currentDepot}-schoolHoliday` : currentDepot;
+    console.log("shiftOptionsGroups:", shiftOptionsGroups);
+    console.log("currentDepot:", currentDepot);
+    console.log("isSchoolHolidayEnabled:", isSchoolHolidayEnabled);
+    console.log("currentOptionsGroupKey:", currentOptionsGroupKey);
 
-  // 检查数据是否有效
-  if (!currentDepot) {
-    console.error("currentDepot 未定义");
-    return;
-  }
-  if (!shiftOptionsGroups[currentOptionsGroupKey]) {
-    console.error(`shiftOptionsGroups 中不存在 ${currentOptionsGroupKey}`);
-    return;
-  }
-
-  const shiftSelectors = scheduleWeekView.querySelectorAll("tbody tr td select.shift-selector");
-  const weekdayHolidaySwitches = scheduleWeekView.querySelectorAll('.weekday-holiday-switch input[type="checkbox"]');
-
-  weekdayHolidaySwitches.forEach((holidaySwitch) => {
-    holidaySwitch.addEventListener("change", function () {
-      console.log("工作日公共假日开关状态改变，立即更新表格备选项");
-      updateShiftOptionsInTableView();
-    });
-  });
-
-  shiftSelectors.forEach((selectElement, index) => {
-    const dayIndex = index;
-    let dayOfWeek = dayIndex === 0 || dayIndex === 6 ? "weekend" : "weekday";
-
-    if (dayOfWeek === "weekday" && dayIndex >= 1 && dayIndex <= 5) {
-      const currentWeekdayHolidaySwitch = weekdayHolidaySwitches[dayIndex - 1];
-      if (currentWeekdayHolidaySwitch && currentWeekdayHolidaySwitch.checked) {
-        dayOfWeek = "weekend";
-      }
+    // 检查数据是否有效
+    if (!currentDepot) {
+      console.error("currentDepot 未定义");
+      return;
     }
-
-    console.log(`处理星期${["日", "一", "二", "三", "四", "五", "六"][dayIndex]} (dayOfWeek: ${dayOfWeek})`);
-
-    const optionsGroup = shiftOptionsGroups[currentOptionsGroupKey][dayOfWeek];
-    if (!optionsGroup) {
-      console.error(`在 ${currentOptionsGroupKey} 中未找到 ${dayOfWeek}`);
+    if (!shiftOptionsGroups[currentOptionsGroupKey]) {
+      console.error(`shiftOptionsGroups 中不存在 ${currentOptionsGroupKey}`);
       return;
     }
 
-    while (selectElement.options.length > 1) {
-      selectElement.remove(1);
-    }
+    const shiftSelectors = scheduleWeekView.querySelectorAll("tbody tr td select.shift-selector");
+    const weekdayHolidaySwitches = scheduleWeekView.querySelectorAll('.weekday-holiday-switch input[type="checkbox"]');
 
-    optionsGroup.forEach((optionText) => {
-      const optionElement = document.createElement("option");
-      optionElement.value = optionText;
-      optionElement.textContent = optionText;
-      selectElement.appendChild(optionElement);
+    weekdayHolidaySwitches.forEach((holidaySwitch) => {
+      holidaySwitch.addEventListener("change", function () {
+        console.log("工作日公共假日开关状态改变，立即更新表格备选项");
+        updateShiftOptionsInTableView();
+      });
     });
-  });
-} //  updateShiftOptionsInTableView() 函数定义 结束
+
+    shiftSelectors.forEach((selectElement, index) => {
+      const dayIndex = index;
+      let dayOfWeek = dayIndex === 0 || dayIndex === 6 ? "weekend" : "weekday";
+
+      if (dayOfWeek === "weekday" && dayIndex >= 1 && dayIndex <= 5) {
+        const currentWeekdayHolidaySwitch = weekdayHolidaySwitches[dayIndex - 1];
+        if (currentWeekdayHolidaySwitch && currentWeekdayHolidaySwitch.checked) {
+          dayOfWeek = "weekend";
+        }
+      }
+
+      console.log(`处理星期${["日", "一", "二", "三", "四", "五", "六"][dayIndex]} (dayOfWeek: ${dayOfWeek})`);
+
+      const optionsGroup = shiftOptionsGroups[currentOptionsGroupKey][dayOfWeek];
+      if (!optionsGroup) {
+        console.error(`在 ${currentOptionsGroupKey} 中未找到 ${dayOfWeek}`);
+        return;
+      }
+
+      while (selectElement.options.length > 1) {
+        selectElement.remove(1);
+      }
+
+      optionsGroup.forEach((optionText) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = optionText;
+        optionElement.textContent = optionText;
+        selectElement.appendChild(optionElement);
+      });
+    });
+  } //  updateShiftOptionsInTableView() 函数定义 结束
 
   // 9.  "添加到日历" 按钮点击事件 - 添加点击事件监听器 (生成日历事件)
   addToCalendarButton.addEventListener("click", async function () {
     console.log("“添加到日历” 按钮被点击了");
-  
+
     // Ensure data is loaded
     await initData();
-  
+
     const scheduleTableBody = scheduleWeekView.querySelector("tbody");
     if (!scheduleTableBody) {
       console.error("找不到排班表格的 <tbody> 元素！");
       return;
     }
-  
+
     const scheduleRows = scheduleTableBody.querySelectorAll("tr");
     if (!scheduleRows.length) {
       console.warn("排班表格 <tbody> 中没有找到任何数据行 (<tr>)！");
       return;
     }
-  
+
     const shiftEvents = [];
     scheduleRows.forEach((row) => {
       const dateCell = row.querySelectorAll("td")[0];
@@ -332,29 +344,29 @@ let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true
       const shiftCell = row.querySelectorAll("td")[1];
       console.log("shiftCell:", shiftCell);
       if (!dateCell || !shiftCell) return;
-  
+
       const dateText = dateCell.textContent.trim();
       console.log("dateText:", dateText);
       const shiftSelector = shiftCell.querySelector("select.shift-selector");
       if (!shiftSelector) return;
-  
+
       const selectedShiftValue = shiftSelector.value;
       if (selectedShiftValue) {
         shiftEvents.push({ date: dateText, shiftCode: selectedShiftValue });
       }
     });
-  
+
     let icsContent = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//SHIFT Helper//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\n";
-  
+
     shiftEvents.forEach((event) => {
       const { shiftCode, date } = event;
       console.log("处理 shiftCode:", shiftCode, "dateText:", date);
       console.log(`Processing shiftCode: ${shiftCode}, dateText: ${date}`);
       const shiftDetails = shiftDetailsDictionary[shiftCode];
-      if (!shiftDetails || shiftCode === "OFF" || shiftCode === "")return;
-  
+      if (!shiftDetails || shiftCode === "OFF" || shiftCode === "") return;
+
       const { signOn1, signOff1, signOn2, signOff2, mealLocation, mealStart, mealFinish, mealDuration } = shiftDetails;
-  
+
       if (signOn2 === "none" && mealLocation !== "none") {
         // Case 1: signOn2 is "none" and mealLocation is not "none"
         icsContent += generateEvent(`${shiftCode} part 1`, date, signOn1, mealStart);
@@ -371,10 +383,10 @@ let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true
         icsContent += generateEvent(shiftCode, date, signOn1, signOff1);
       }
     });
-  
+
     icsContent += "END:VCALENDAR\r\n";
     console.log("Generated .ics content:\n", icsContent);
-  
+
     const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
     const downloadUrl = URL.createObjectURL(blob);
     const downloadLink = document.getElementById("hiddenDownloadLink");
@@ -383,21 +395,21 @@ let isSchoolHolidayEnabled = false; //  存储 School Holiday 开关状态 (true
     URL.revokeObjectURL(downloadUrl);
     console.log("已触发 .ics 文件下载");
   });
-  
+
   function generateEvent(summary, dateText, startTime, endTime) {
     if (startTime === "none" || endTime === "none") return "";
     const startDateTime = createUTCDateFromDateTextAndTime(dateText, startTime);
     const endDateTime = createUTCDateFromDateTextAndTime(dateText, endTime);
     if (!startDateTime || !endDateTime) return "";
-  
+
     const uid = generateUuid();
     const dtstamp = formatDateTimeToUTCString(new Date());
     const dtstart = formatDateTimeToUTCString(startDateTime);
     const dtend = formatDateTimeToUTCString(endDateTime);
-  
+
     return `BEGIN:VEVENT\r\nUID:${uid}\r\nDTSTAMP:${dtstamp}\r\nDTSTART:${dtstart}\r\nDTEND:${dtend}\r\nSUMMARY:${summary}\r\nEND:VEVENT\r\n`;
   }
-  
+
   function calculateGap(endTime, startTime) {
     const [endHour, endMinute] = endTime.split(":").map(Number);
     const [startHour, startMinute] = startTime.split(":").map(Number);

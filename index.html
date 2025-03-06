@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" user-scalable="no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+      user-scalable="no"
+    />
     <meta
       name="description"
-      content="A tool to help you manage shifts effortlessly. Select a DEPOT, plan your weekly shifts, and add them to your calendar."> 
+      content="A tool to help you manage shifts effortlessly. Select a DEPOT, plan your weekly shifts, and add them to your calendar."
+    />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -34,10 +39,9 @@
           <h1>SHIFT Helper</h1>
         </header>
 
-        <section id="depot-prompt">
-          <p>Please select a DEPOT</p>
-        </section>
-
+        <div id="version">
+          <section id="depot-prompt"></section>
+          </div>
         <section id="school-holiday-setting">
           <label for="school-holiday-switch">School Holiday</label>
           <label class="switch">
@@ -47,9 +51,16 @@
         </section>
 
         <section id="depot-buttons">
-          <button id="greerton-depot">Greerton</button>
-          <button id="papamoa-depot">Papamoa</button>
-          <button id="maleme-depot">Maleme</button>
+          <fieldset id="drive-shifts">
+            <legend>Driving Shifts</legend>
+            <button id="greerton-depot">Greerton</button>
+            <button id="papamoa-depot">Papamoa</button>
+            <button id="maleme-depot">Maleme</button>
+          </fieldset>
+          <fieldset id="standby-shifts">
+            <legend>NON-Driving Shifts</legend>
+            <button id="standby-depot">Standby</button>
+          </fieldset>
           <button id="about-button" class="about-btn">About</button>
         </section>
       </div>
@@ -242,8 +253,8 @@
               (⋮) > "Add to Home Screen".
             </li>
             <li>
-              <strong>iOS</strong>: Open the app in Safari, click the share
-              button (square with arrow) > "Add to Home Screen".
+              <strong>iOS</strong>: Open the app in <strong>Safari</strong>,
+              click the share button (square with arrow) > "Add to Home Screen".
             </li>
             <li>
               <strong>Windows / Mac</strong>: Open the app in Chrome or Edge,
@@ -254,18 +265,44 @@
           <p>
             After adding to your desktop, you can use it like a native app and
             enjoy the convenience of offline shift viewing.
-          </p>
-
-          <h3>Data and Version</h3>
-          <p>Shift data is based on valid data as of February 22, 2025.</p>
-          <p>
-            This is an open-source project. Check out the source code at
+          
             <a
-              href="https://github.com/chenpreston/shift-helper-pwa"
+              href="https://github.com/chenpreston"
               target="_blank"
-              >https://github.com/chenpreston/shift-helper-pwa</a
-            >.
+              rel="noopener noreferrer"
+            >
+              <img
+              id="github-logo"  
+              src="/assets/icons/github-mark.svg"
+                alt="GitHub"
+                width="30"
+                height="30"
+                style="vertical-align: middle"
+              />
+            </a>
+            <!-- 说明文字 -->
+            <p style="vertical-align: middle; text-align: center">
+              This application is hosted on
+              <a
+                href="https://github.com/chenpreston/shift-helper-pwa"
+                target="_blank"
+                rel="noopener noreferrer"
+              ><img
+              id="github-mark"  
+              src="/assets/icons/GitHub_Logo.png"
+                alt="GitHub"
+                width="74"
+                height="30"
+                style="vertical-align: middle"
+              />
+              </a>
+            </p>
+            <a href="https://github.com/chenpreston/shift-helper-pwa/releases"
+              target="_blank"
+              ><p id="update-history">Update History</p></a>
           </p>
+            
+          
         </div>
         <button id="back-to-depot-from-about">Back</button>
       </section>
