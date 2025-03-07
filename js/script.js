@@ -85,8 +85,8 @@ function parseShiftsCSV(data) {
 }
 
 async function initData() {
-  const optionsData = await loadCSV("./options.csv");
-  const shiftsData = await loadCSV("./shifts.csv");
+  const optionsData = await loadCSV("./data/options.csv");
+  const shiftsData = await loadCSV("./data/shifts.csv");
   shiftOptionsGroups = parseOptionsCSV(optionsData);
   shiftDetailsDictionary = parseShiftsCSV(shiftsData);
   console.log("Loaded shiftOptionsGroups:", shiftOptionsGroups);
@@ -95,7 +95,7 @@ async function initData() {
 
 initData().catch((error) => console.error("Initialization failed:", error));
 
-const appVersion = "v0.5.2"; //app版本
+const appVersion = "v0.5.3"; //app版本
 const shiftDetailsVersion = "06.03.2025"
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -112,6 +112,7 @@ document.querySelector("#depot-prompt").innerHTML += `<p>shift details database 
   const papamoaDepotButton = document.getElementById("papamoa-depot"); // Papamoa DEPOT 按钮
   const malemeDepotButton = document.getElementById("maleme-depot"); // Maleme DEPOT 按钮
   const standbyDepotButton = document.getElementById("standby-depot"); // Standby DEPOT 按钮
+  const backToDepotFromForm= document.getElementById("back-to-depot-selection-from-form"); // 从表单页面返回按钮
   const backToDepotSelectionButton = document.getElementById("back-to-depot-selection"); // "返回" 按钮
   const depotSelectionUI = document.getElementById("depot-selection-ui"); // DEPOT 选择界面容器
   const weekDateSelector = document.getElementById("week-date-selector"); // 日期选择器 section 元素
@@ -122,7 +123,31 @@ document.querySelector("#depot-prompt").innerHTML += `<p>shift details database 
   const aboutSection = document.getElementById("about-section"); //About 区域
   const aboutButton = document.getElementById("about-button"); // About 按钮
   const backToDepotFromAboutButton = document.getElementById("back-to-depot-from-about"); // 从 About 页面的返回按钮
+  const contactButton = document.getElementById("contact-button"); // 联系我们按钮
+  const contactSection = document.getElementById("contact-section"); // 联系我们区域
+  
+  // 联系我们按钮
+  contactButton.addEventListener("click", () => {
+    console.log("Contact button clicked");
+    depotSelectionUI.style.display = "none";
+    aboutSection.style.display = "none";
+    weekDateSelector.style.display = "none";
+    scheduleWeekView.style.display = "none";
+    contactSection.style.display = "block";
+  }
+  );
 
+  // 返回 DEPOT 选择（从 联系我们）
+  backToDepotFromForm.addEventListener("click", () => {
+    console.log("Back from Contact clicked");
+    depotSelectionUI.style.display = "block";
+    aboutSection.style.display = "none";
+    weekDateSelector.style.display = "none";
+    scheduleWeekView.style.display = "none";
+    contactSection.style.display = "none";
+  });
+  
+  
   // About 按钮
   aboutButton.addEventListener("click", () => {
     console.log("About button clicked");

@@ -1,15 +1,21 @@
-const CACHE_NAME = "shift-helper-cache-v0.5.2"; // 更新缓存时修改版本号
+const CACHE_NAME = "shift-helper-cache-v0.5.3"; // 更新缓存时修改版本号
 const urlsToCache = [
   "/",
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/shifts.csv",
-  "/options.csv",
-  "/assets/icons/icon-192x192.png",
-  "/assets/icons/icon-512x512.png",
-  "/assets/icons/GitHub_logo.png",
-  "/assets/icons/github-mark.svg",
+  "./index.html",
+  "./css/style.css",
+  "./js/script.js",
+  "./data/shifts.csv",
+  "./data/options.csv",
+  "./assets/icons/icon-192x192.png",
+  "./assets/icons/icon-512x512.png",
+  "./assets/icons/GitHub_logo.png",
+  "./assets/icons/github-mark.svg",
+  "./assets/icons/apple-touch-icon.png",
+  "./favicon.ico",
+  "./assets/icons/favicon-16x16.png",
+  "./assets/icons/favicon-32x32.png",
+  "./js/components/utils.js",
+  "./js/lib/papaparse.js",
 ];
 
 // 安装事件
