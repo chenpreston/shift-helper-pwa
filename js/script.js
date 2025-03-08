@@ -96,7 +96,7 @@ async function initData() {
 initData().catch((error) => console.error("Initialization failed:", error));
 
 const appVersion = "v0.5.4"; //app版本
-const shiftDetailsVersion = "06.03.2025"
+const shiftDetailsVersion = "28.01.2025"
 
 document.addEventListener("DOMContentLoaded", function () {
   // 当 HTML 文档完全加载完成后执行的代码

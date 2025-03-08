@@ -1,4 +1,4 @@
-﻿greertonWeekdaySchoolHolidayFalse,greertonWeekendSchoolHolidayFalse,greertonWeekdaySchoolHolidayTrue,greertonWeekendSchoolHolidayTrue,papamoaWeekdaySchoolHolidayFalse,papamoaWeekendSchoolHolidayFalse,papamoaWeekdaySchoolHolidayTrue,papamoaWeekendSchoolHolidayTrue,malemeWeekdaySchoolHolidayFalse,malemeWeekendSchoolHolidayFalse,malemeWeekdaySchoolHolidayTrue,malemeWeekendSchoolHolidayTrue,standbyWeekdaySchoolHolidayFalse,standbyWeekendSchoolHolidayFalse,standbyWeekdaySchoolHolidayTrue,standbyWeekendSchoolHolidayTrue
+greertonWeekdaySchoolHolidayFalse,greertonWeekendSchoolHolidayFalse,greertonWeekdaySchoolHolidayTrue,greertonWeekendSchoolHolidayTrue,papamoaWeekdaySchoolHolidayFalse,papamoaWeekendSchoolHolidayFalse,papamoaWeekdaySchoolHolidayTrue,papamoaWeekendSchoolHolidayTrue,malemeWeekdaySchoolHolidayFalse,malemeWeekendSchoolHolidayFalse,malemeWeekdaySchoolHolidayTrue,malemeWeekendSchoolHolidayTrue,standbyWeekdaySchoolHolidayFalse,standbyWeekendSchoolHolidayFalse,standbyWeekdaySchoolHolidayTrue,standbyWeekendSchoolHolidayTrue
 OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF,OFF,SS01,SS01,SS01,SS01
 T26301T,T26701,T26301H,T26701,T28301T,T28701,T28301H,T28701,T27301T,,,,SS02,SS02,SS02,SS02
 T26302T,T26702,T26302H,T26702,T28302T,T28702,T28302H,T28702,T27303T,,,,SS03,SS03,SS03,SS03
@@ -63,8 +63,8 @@ T26522T,,,,,,,,,,,,BS12,BS12,BS12,BS12
 T26523T,,,,,,,,,,,,BS13,BS13,BS13,BS13
 T26524T,,,,,,,,,,,,BS14,BS14,BS14,BS14
 T26525T,,,,,,,,,,,,BS15,BS15,BS15,BS15
-,,,,,,,,,,,,BS16,BS16,BS16,BS16
-,,,,,,,,,,,,BS17,BS17,BS17,BS17
+T26601T,,,,,,,,,,,,BS16,BS16,BS16,BS16
+T26901T,,,,,,,,,,,,BS17,BS17,BS17,BS17
 ,,,,,,,,,,,,BS18,BS18,BS18,BS18
 ,,,,,,,,,,,,BS19,BS19,BS19,BS19
 ,,,,,,,,,,,,BS20,BS20,BS20,BS20
