@@ -95,7 +95,7 @@ async function initData() {
 
 initData().catch((error) => console.error("Initialization failed:", error));
 
-const appVersion = "v0.5.5"; //app版本
+const appVersion = "v0.5.6"; //app版本
 const shiftDetailsVersion = "28.01.2025"
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -125,6 +125,9 @@ document.querySelector("#depot-prompt").innerHTML += `<p>shift details database 
   const backToDepotFromAboutButton = document.getElementById("back-to-depot-from-about"); // 从 About 页面的返回按钮
   const contactButton = document.getElementById("contact-button"); // 联系我们按钮
   const contactSection = document.getElementById("contact-section"); // 联系我们区域
+
+  const today = new Date().toISOString().split('T')[0]; // 格式化为 YYYY-MM-DD
+  document.getElementById('week-start-date').value = today; // 设置日期选择器的默认值为今天
   
   // 联系我们按钮
   contactButton.addEventListener("click", () => {
