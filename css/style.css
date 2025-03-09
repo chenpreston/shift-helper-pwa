@@ -1,61 +1,65 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-
+/* 全局样式 */
 body {
   font-family: sans-serif;
-  margin: 0; /* 清除默认 margin */
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* 最小高度 100vh (viewport height)，让内容垂直居中 */
-  background-color: #f4f7f9; /* 浅灰色背景 */
+  min-height: 100vh;
+  background-color: #f4f7f9;
 }
 
+/* 通用容器 */
 #depot-selection-container {
-  width: 80%; /* 容器宽度 80% */
-  max-width: 400px; /* 最大宽度 400px，限制在小屏幕下 */
+  width: 80%;
+  max-width: 400px;
   padding: 20px;
-  background-color: white;
-  border-radius: 10px; /* 圆角边框 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /*  হালকা阴影效果 */
-  text-align: center; /* 容器内文字居中 */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
+/* 头部样式 */
 header {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 h1 {
-  font-size: 10;
+  font-size: 1.5em; /* 修复：10 单位不明确，改为相对单位 */
   font-weight: bold;
   color: #333;
 }
 
 #version {
-  padding: 1px;
-  margin-bottom: 0px;
+  
+  padding: 0;
+  
+  margin-bottom: 0;
+  
+}
+
+/* 提示文字 */
+#depot-prompt p {
+  margin: 0; /* 简化为单行 */
+  font-size: 0.5em; /* 调整为更合适的大小 */
+  color: #555;
 }
 
 #depot-prompt p:last-child {
   margin-bottom: 20px;
 }
 
-#depot-prompt p {
-  margin-top: 0px;
-  margin-bottom: 0px;
-  font-size: 0.5em; /* 字体大小 1.2 倍 */
-  color: #555;
-}
-
-/*  自定义 Switch 样式 (参考 iOS Switch 风格) */
+/* Switch 开关样式 */
 #school-holiday-setting {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* label 和 switch 两端对齐 */
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 #school-holiday-setting label[for="school-holiday-switch"] {
-  text-align: left; /* label 文字左对齐 */
+  text-align: left;
   margin-right: 15px;
   color: #333;
 }
@@ -75,83 +79,88 @@ h1 {
 
 .slider {
   position: absolute;
-  cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: 0.4s; /* 滑块动画过渡时间 0.4 秒 */
-  border-radius: 28px; /* 圆角 */
+  border-radius: 28px;
+  cursor: pointer;
+  transition: background-color 0.4s;
 }
 
 .slider:before {
-  position: absolute;
   content: "";
-  height: 20px;
+  position: absolute;
   width: 20px;
+  height: 20px;
   left: 4px;
   bottom: 4px;
-  background-color: white;
-  transition: 0.4s; /* 滑块小圆点动画过渡时间 0.4 秒 */
-  border-radius: 50%; /* 圆形 */
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196f3; /* Switch 选中状态背景色 (蓝色) */
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3; /* Switch focus 状态阴影 */
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
-  transform: translateX(22px); /* Switch 选中状态滑块小圆点水平移动 22px */
+  transform: translateX(22px);
 }
 
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-#depot-buttons {
+/* 按钮容器 */
+#depot-buttons,
+#drive-shifts,
+#standby-shifts {
   display: flex;
-  flex-direction: column; /* 垂直排列按钮 */
+  flex-direction: column;
   gap: 10px;
 }
 
-#drive-shifts, #standby-shifts {
-  display: flex;
-  flex-direction: column; /* 垂直排列按钮 */
-  gap: 10px;
-}
-
-#depot-buttons button {
+/* 通用按钮样式 */
+button {
   padding: 12px 20px;
-  border: none; /* 移除默认边框 */
+  border: none;
   border-radius: 8px;
-  background-color: #007bff; /* 蓝色背景 */
-  color: white; /* 白色文字 */
+  background-color: #007bff;
+  color: #fff;
   font-size: 1em;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
+  transition: background-color 0.3s ease;
 }
 
-#depot-buttons button:hover {
-  background-color: #0056b3; /* 鼠标悬停时背景色加深 */
+button:hover {
+  background-color: #0056b3;
 }
 
-/*  日期选择器 section 样式 (可选) */
+/* 特定按钮样式 */
+#back-to-depot-selection,
+#back-to-date-selector-button,
+#back-to-depot-from-about,
+#back-to-depot-selection-from-form {
+  background-color: #999;
+}
+
+#back-to-depot-selection:hover,
+#back-to-date-selector-button:hover,
+#back-to-depot-from-about:hover,
+#back-to-depot-selection-from-form:hover {
+  background-color: #666;
+}
+
+/* 日期选择器 */
 #week-date-selector {
-  margin-top: 20px; /*  日期选择器 section  顶部外边距，与 DEPOT 按钮区域隔开距离 */
-  text-align: center; /*  内部文字居中对齐 */
+  margin-top: 20px;
+  text-align: center;
 }
 
 #week-date-selector p {
-  margin-bottom: 10px; /*  提示文字  下方外边距， 与日期 input 隔开距离 */
+  margin-bottom: 10px;
   color: #555;
 }
 
@@ -162,9 +171,9 @@ input:checked + .slider:before {
   font-size: 1em;
 }
 
-/*  日期列表视图 (Schedule Week View) 样式  */
+/* 日程表视图 */
 #schedule-week-view {
-  margin-top: 20px; /* 与日期选择器 section 保持一定间距 */
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -172,11 +181,11 @@ input:checked + .slider:before {
   margin-bottom: 20px;
   color: #555;
   font-size: 1.1em;
-  font-weight: normal; /* 取消标题默认加粗 */
+  font-weight: normal;
 }
 
 #schedule-table-view-container {
-  overflow-x: auto; /* 水平滚动条，如果表格内容超出容器宽度 */
+  overflow-x: auto;
 }
 
 #schedule-week-view table {
@@ -196,160 +205,64 @@ input:checked + .slider:before {
 #schedule-week-view th {
   background-color: #f0f0f0;
   font-weight: bold;
-}
-
-#schedule-week-view thead th {
-  font-size: 0.9em; /* 表头字体稍小 */
   color: #777;
 }
 
 #schedule-week-view thead th[colspan="7"] {
-  /*  “公共假日” 表头  */
-  font-size: 1em; /* "公共假日" 表头字体稍大一些 */
+  font-size: 1em;
   color: #333;
 }
 
 #schedule-week-view tbody th {
-  text-align: left; /*  日期/星期几  列  文字左对齐 */
-  font-weight: normal; /*  取消  日期/星期几  列  默认加粗 */
+  text-align: left;
+  font-weight: normal;
   color: #333;
-}
-
-#schedule-week-view tbody th[scope="row"] {
-  /*  为  日期/星期几  列  设置 scope="row"  属性后， 可以使用此选择器  */
-  background-color: #f9f9f9; /*  日期/星期几  列  背景色  */
+  background-color: #f9f9f9;
 }
 
 #schedule-week-view tbody td {
-  padding: 6px; /*  数据单元格内边距  稍微小一些  */
+  padding: 6px;
 }
 
-/*  调整  Switch 开关  在表格单元格中的样式  */
 #schedule-week-view tbody td .switch {
-  margin: 0 auto; /*  水平居中  Switch 开关  */
-  display: block; /*  让  margin: auto  水平居中生效  */
+  margin: 0 auto;
+  display: block;
 }
 
-#schedule-week-view tbody td label[class="switch"] {
-  /*  覆盖  之前  全局  .switch label  选择器的样式，  避免  影响其他地方的  Switch  样式  */
-  margin-bottom: 0; /*  移除  Switch  label  默认的  下外边距  (如果有) */
-}
-/*  调整表格 Shift 列的下拉菜单样式  */
+/* 下拉菜单 */
 #schedule-week-view tbody td select.shift-selector {
-  width: 100%; /* 下拉菜单宽度 100% 填充单元格 */
-  padding: 6px; /* 下拉菜单内边距 */
-  border: 1px solid #ccc; /* 下拉菜单边框 */
-  border-radius: 4px; /* 下拉菜单圆角 */
-  -webkit-appearance: none; /* 移除 Safari 和 Chrome 浏览器默认样式 */
-  -moz-appearance: none; /* 移除 Firefox 浏览器默认样式 */
-  appearance: none; /* 移除其他浏览器默认样式 */
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>"); /* 添加下拉箭头 */
-  background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px; /* 调整下拉箭头垂直位置 */
-  padding-right: 25px; /* 留出空间显示下拉箭头 */
-  font-size: 0.9em; /* 下拉菜单字体稍小 */
+  width: 100%;
+  padding: 6px 25px 6px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  background: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat right 5px center;
+  appearance: none;
 }
 
-/*  鼠标悬停和聚焦状态样式 (可选) */
 #schedule-week-view tbody td select.shift-selector:hover,
 #schedule-week-view tbody td select.shift-selector:focus {
-  border-color: #888; /* 鼠标悬停/聚焦时边框颜色 */
-  outline: none; /* 移除默认 focus 轮廓线 */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); /* 添加轻微阴影效果 */
+  border-color: #888;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
 
-#back-to-depot-selection {
-  padding: 8px 20px;
-  border: none; /* 移除默认边框 */
-  border-radius: 8px;
-  background-color: #999999; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
-}
-
-#back-to-depot-selection:hover {
-  background-color: #666666; /* 鼠标悬停时背景色加深 */
-}
-
-#back-to-date-selector-button {
-  padding: 8px 20px;
-  border: none; /* 移除默认边框 */
-  border-radius: 8px;
-  background-color: #999999; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
-}
-
-#back-to-date-selector-button:hover {
-  background-color: #666666; /* 鼠标悬停时背景色加深 */
-}
-
-#add-to-calendar-button {
-  padding: 8px 20px;
-  border: none; /* 移除默认边框 */
-  border-radius: 8px;
-  background-color: #007bff; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
-}
-
-#add-to-calendar-button:hover {
-  background-color: #0056b3; /* 鼠标悬停时背景色加深 */
-}
-
+/* 联系和关于按钮 */
 #contact-about-buttons {
-  margin-top: 40px; /* 与日程表视图保持一定间距 */
-  text-align: center; /* 内部文字居中对齐 */
-  
+  margin-top: 40px;
+  text-align: center;
 }
+
 #contact-button {
   width: 70%;
 }
 
-#contact-about-buttons button {
-  padding: 12px 20px;
-  border: none; /* 移除默认边框 */
-  border-radius: 8px;
-  background-color: #007bff; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
-}
-
-#contact-about-buttons button:hover {
-  background-color: #0056b3; /* 鼠标悬停时背景色加深 */
-}
-
-
-#back-to-depot-from-about,#back-to-depot-selection-from-form {
-  padding: 8px 30px;
-  border: none; /* 移除默认边框 */
-  border-radius: 8px;
-  background-color: #999999; /* 蓝色背景 */
-  color: white; /* 白色文字 */
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* 背景色过渡动画 0.3 秒 */
-}
-
-#back-to-depot-from-about:hover,#back-to-depot-selection-from-form:hover {
-  background-color: #666666; /* 鼠标悬停时背景色加深 */
-}
-
-/* style.css */
+/* About 页面样式 */
 .about-content {
   max-width: 600px;
   margin: 0 auto;
-  text-align: left;
   padding: 20px;
+  text-align: left;
 }
 
 .about-content h3 {
@@ -370,22 +283,6 @@ input:checked + .slider:before {
   margin-bottom: 8px;
 }
 
-#back-to-depot-from-about {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#back-to-depot-from-about:hover {
-  background-color: #555;
-}
-
-/* style.css */
 .about-content a {
   color: #0066cc;
   text-decoration: none;
@@ -395,393 +292,135 @@ input:checked + .slider:before {
   text-decoration: underline;
 }
 
+/* 其他元素 */
 legend {
   text-align: left;
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: bold;
   color: #333;
 }
 
-#github-logo {
+#github-logo,
+#github-mark {
   display: block;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  margin-left: auto;
-  margin-right: auto;
-
+  margin: 20px auto;
 }
 
-
 a {
+  color: #0366d6;
   text-decoration: none;
-  color: #0366d6; /* GitHub蓝色 */
 }
 
 a:hover {
   text-decoration: underline;
 }
 
-#update-history,#readme {
+#update-history,
+#readme {
   text-align: center;
-}
-
-#github-mark {
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 #license p {
   text-align: center;
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin: 0;
   font-size: 0.5em;
 }
 
-
-
-/** Variables **/
-
-:root {
-  --color-background: #cbd5e1;
-  --color-background-alt: #64748b;
-  --color-border-active: #64748b;
-  --color-border-default: #94a3b8;
-  --color-highlight: #cbd5e1;
-  --color-primary: #1e293b;
-  --color-primary-active: #090f1d;
-  --color-text-default: #0f172a;
-  --color-text-muted: #475569;
-
-  --font-family-body: "Inter", sans-serif;
+/* 联系表单容器 */
+#contact-section {
+  margin-top: 20px;
+  text-align: center;
 }
 
-/** Base **/
-
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-* {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  font-family: var(--font-family-body);
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
-button,
-input,
-optgroup,
-select,
-textarea {
-  font-family: inherit;
-  font-feature-settings: inherit;
-  font-variation-settings: inherit;
-  font-size: 100%;
-  font-weight: inherit;
-  line-height: inherit;
-  color: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-[type="checkbox"],
-[type="radio"],
-[type="range"] {
-  appearance: none;
-  flex-shrink: 0;
-  padding: 0;
-  user-select: none;
-}
-
-[type="checkbox"]:focus,
-[type="radio"]:focus,
-[type="range"]:focus {
-  outline: none;
-}
-
-/** Components **/
-
+/* 表单整体样式 */
 .fs-form {
-  display: grid;
-  row-gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 字段之间的间距 */
+  max-width: 100%; /* 确保表单在容器内自适应 */
+  padding: 0 10px; /* 左右内边距，防止过于贴边 */
 }
 
-.fs-form:where(.fs-layout__2-column) {
-  column-gap: 1.5rem;
-  grid-template-columns: 1fr 1fr;
-}
-
-fieldset {
-  display: grid;
-  row-gap: 1.5rem;
-}
-
-.fs-form:where(.fs-layout__2-column) fieldset {
-  column-gap: 1.5rem;
-  grid-template-columns: 1fr 1fr;
-  grid-column: 1 / -1;
-}
-
+/* 表单字段容器 */
 .fs-field {
   display: flex;
   flex-direction: column;
-  row-gap: 0.375rem;
+  text-align: left; /* 左对齐标签和输入框 */
 }
 
+/* 表单标签 */
 .fs-label {
-  color: var(--color-text-default);
-  display: block;
-  font-family: var(--font-family-display);
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
+  margin-bottom: 5px; /* 标签与输入框的间距 */
+  font-size: 1em;
+  color: #333;
+  font-weight: bold;
 }
 
-.fs-description {
-  color: var(--color-text-muted);
-  display: block;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+/* 输入框样式 */
+.fs-input,
+.fs-textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 100%; /* 确保输入框占满容器宽度 */
+  box-sizing: border-box; /* 防止边框和内边距影响宽度 */
+  transition: border-color 0.3s ease; /* 平滑的边框颜色过渡 */
 }
 
+/* 文本区域特定样式 */
+.fs-textarea {
+  min-height: 100px; /* 最小高度，方便输入多行文本 */
+  resize: vertical; /* 只允许垂直调整大小 */
+}
+
+/* 输入框聚焦和悬停效果 */
+.fs-input:focus,
+.fs-textarea:focus {
+  border-color: #007bff; /* 聚焦时边框颜色与主题一致 */
+  outline: none; /* 移除默认轮廓 */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* 添加轻微阴影 */
+}
+
+.fs-input:hover,
+.fs-textarea:hover {
+  border-color: #888; /* 悬停时边框颜色变深 */
+}
+
+/* 按钮组 */
 .fs-button-group {
   display: flex;
-  flex-direction: row-reverse;
-  column-gap: 1.5rem;
+  flex-direction: column; /* 垂直排列按钮 */
+  gap: 10px; /* 按钮之间的间距 */
+  margin-top: 10px; /* 与上方字段的间距 */
 }
 
-.fs-form:where(.fs-layout__2-column) .fs-button-group {
-  grid-column: 1 / -1;
+/* 提交按钮特定样式 */
+.fs-button[type="submit"] {
+  background-color: #007bff; /* 与全局按钮一致 */
 }
 
-.fs-button {
-  background-color: var(--color-primary);
-  border-radius: 0.375rem;
-  color: white;
-  cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1rem;
-  padding: 1rem 2rem;
-  transition-duration: 200ms;
-  transition-property: background-color;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+.fs-button[type="submit"]:hover {
+  background-color: #0056b3;
 }
 
-.fs-button:hover {
-  background-color: var(--color-primary-active);
+/* 返回按钮使用已有样式，无需额外定义 */
+#back-to-depot-selection-from-form {
+  background-color: #999; /* 与全局返回按钮一致 */
 }
 
-.fs-button:focus-visible {
-  background-color: var(--color-primary-active);
-  outline: 3px solid var(--color-highlight);
+#back-to-depot-selection-from-form:hover {
+  background-color: #666;
 }
 
-.fs-input,
-.fs-select {
-  appearance: none;
-  border-radius: 0.375rem;
-  border-width: 0;
-  box-shadow: var(--color-border-default) 0 0 0 1px inset;
-  color: var(--color-primary);
-  font-size: 1rem;
-  height: 2.5rem;
-  line-height: 1.5rem;
-  outline: none;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
-
-.fs-input:focus-visible,
-.fs-select:focus-visible {
-  box-shadow: var(--color-border-active) 0 0 0 1.5px inset;
-  outline: 3px solid var(--color-highlight);
-  outline-offset: 0;
-}
-
-.fs-input::placeholder {
-  color: var(--color-text-muted);
-}
-
-.fs-checkbox-group,
-.fs-radio-group {
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.5rem;
-}
-
-.fs-checkbox-field,
-.fs-radio-field {
-  column-gap: 0.5rem;
-  display: flex;
-}
-
-:is(.fs-checkbox-field, .fs-radio-field) .fs-label + .fs-description {
-  margin-top: 0.125rem;
-}
-
-.fs-checkbox-wrapper,
-.fs-radio-wrapper {
-  align-items: center;
-  display: flex;
-  height: 1.25rem;
-}
-
-.fs-checkbox,
-.fs-radio {
-  background-color: #fff;
-  border: 1px solid var(--color-primary);
-  height: 1rem;
-  width: 1rem;
-}
-
-.fs-checkbox {
-  border-radius: 0.25rem;
-}
-
-.fs-radio {
-  border-radius: 100%;
-}
-
-.fs-checkbox:checked,
-.fs-radio:checked {
-  background-color: var(--color-primary);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  border-color: transparent;
-}
-
-.fs-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-}
-
-.fs-radio:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
-}
-
-.fs-checkbox:focus-visible,
-.fs-radio:focus-visible {
-  outline: 3px solid var(--color-highlight);
-  outline-offset: 0;
-}
-
-.fs-select {
-  background-color: #fff;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-}
-
-.fs-slider {
-  background: transparent;
-  cursor: pointer;
-  height: 1.25rem;
-  width: 100%;
-}
-
-.fs-slider::-moz-range-track {
-  background-color: var(--color-background);
-  border-radius: 0.5rem;
-  height: 0.5rem;
-}
-
-.fs-slider::-webkit-slider-runnable-track {
-  background-color: var(--color-background);
-  border-radius: 0.5rem;
-  height: 0.5rem;
-}
-
-.fs-slider::-moz-range-thumb {
-  background-color: var(--color-primary);
-  border: none; /* Removes extra border that FF applies */
-  border-radius: 50%;
-  height: 1.25rem;
-  width: 1.25rem;
-}
-
-.fs-slider::-webkit-slider-thumb {
-  appearance: none;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  height: 1.25rem;
-  margin-top: -0.375rem; /* Centers thumb on the track */
-  width: 1.25rem;
-}
-
-.fs-slider:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-.fs-slider:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-.fs-switch-field {
-  align-items: center;
-  column-gap: 0.75rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.fs-switch {
-  background-color: var(--color-background-alt);
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='white'/%3e%3c/svg%3e");
-  background-position: left center;
-  background-repeat: no-repeat;
-  border-radius: 1.5rem;
-  cursor: pointer;
-  height: 1.5rem;
-  transition-duration: 200ms;
-  transition-property: background-color, background-position;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  width: 2.75rem;
-}
-
-.fs-switch:checked {
-  background-color: var(--color-primary);
-  background-position: right center;
-}
-
-.fs-switch:focus-visible {
-  outline: 3px solid var(--color-highlight);
-  outline-offset: 0;
-}
-
-.fs-textarea {
-  appearance: none;
-  border-radius: 0.375rem;
-  border-width: 0;
-  box-shadow: var(--color-border-default) 0 0 0 1px inset;
-  color: var(--color-primary);
-  font-size: 1rem;
-  line-height: 1.5rem;
-  outline: none;
-  padding: 0.5rem 0.75rem;
-  resize: vertical;
-}
-
-.fs-textarea:focus-visible {
-  box-shadow: var(--color-border-active) 0 0 0 1.5px inset;
-  outline: 3px solid var(--color-highlight);
-  outline-offset: 0;
-}
-
-.fs-textarea::placeholder {
-  color: var(--color-text-muted);
+/* 响应式调整 */
+@media (min-width: 600px) {
+  .fs-button-group {
+    flex-direction: row; /* 大屏幕时按钮水平排列 */
+    justify-content: center; /* 居中对齐 */
+  }
+  
+  .fs-form {
+    padding: 0; /* 大屏幕时移除左右内边距 */
+  }
 }
