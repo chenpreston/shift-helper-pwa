@@ -2,7 +2,7 @@
 
 **SHIFT Helper** is a Progressive Web App (PWA) designed to help users manage their work shifts effortlessly. It allows you to select a depot, plan your weekly shifts, and export them to your calendar. The app supports offline use and can be installed on your device's desktop or home screen.
 
-Current Version: **v0.5.4**  
+Current Version: **v0.5.6**  
 Shift Data Cutoff: **February 22, 2025**
 
 ## Features
@@ -51,7 +51,7 @@ Visit this URL to try SHIFT Helper directly in your browser!
 
 **SHIFT Helper** 是一款渐进式网页应用（PWA），旨在帮助用户轻松管理他们的工作班次。它允许您选择一个仓库，规划您的一周班次，并将其导出到您的日历中。该应用支持离线使用，并且可以安装到您设备的桌面或主屏幕上。
 
-当前版本：**v0.5.4**  
+当前版本：**v0.5.6**  
 班次数据截止日期：**2025年2月22日**
 
 ## 功能
