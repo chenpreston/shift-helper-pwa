@@ -95,7 +95,7 @@ async function initData() {
 
 initData().catch((error) => console.error("Initialization failed:", error));
 
-const appVersion = "v0.5.8";
+const appVersion = "v0.6.0";
 const shiftDetailsVersion = "28.01.2025";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -217,8 +217,25 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       // 未选中的行保持原有值，不做任何修改
     });
-    toggleWeekdaysButton.click(); // 清除所有选择
     console.log(`Shift 选择已同步为: ${selectedValue}`);
+    checkboxes.sun.checked = false;
+    checkboxes.mon.checked = false;
+    checkboxes.tue.checked = false;
+    checkboxes.wed.checked = false;
+    checkboxes.thu.checked = false;
+    checkboxes.fri.checked = false;
+    checkboxes.sat.checked = false;
+    checkboxes.sun.closest("tr").classList.remove("highlight");
+    checkboxes.mon.closest("tr").classList.remove("highlight"); 
+    checkboxes.tue.closest("tr").classList.remove("highlight");
+    checkboxes.wed.closest("tr").classList.remove("highlight");
+    checkboxes.thu.closest("tr").classList.remove("highlight");
+    checkboxes.fri.closest("tr").classList.remove("highlight");
+    checkboxes.sat.closest("tr").classList.remove("highlight");
+    shiftSelectors.forEach(select => {
+      select.disabled = false;
+    }
+    );
   }
 
   // 复选框高亮和状态更新
