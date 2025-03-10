@@ -107,7 +107,8 @@
             </thead>
             <tbody>
               <tr>
-                <th>SUN</th>
+                
+                <th><input id="same-shift-checkbox-sun" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-sun">SUN</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -120,12 +121,13 @@
                 </td>
                 <td>
                   <label class="switch"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-sun" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>MON</th>
+               
+                <th><input id="same-shift-checkbox-mon" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-mon">MON</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -139,12 +141,13 @@
                 <td>
                   <label
                     class="switch weekday-holiday-switch weekday-holiday-switch-mon"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-mon" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>TUE</th>
+               
+                <th><input id="same-shift-checkbox-tue" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-tue">TUE</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -158,12 +161,13 @@
                 <td>
                   <label
                     class="switch weekday-holiday-switch weekday-holiday-switch-tue"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-tue" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>WED</th>
+               
+                <th><input id="same-shift-checkbox-wed" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-wed">WED</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -177,12 +181,13 @@
                 <td>
                   <label
                     class="switch weekday-holiday-switch weekday-holiday-switch-wed"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-wed" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>THU</th>
+           
+                <th><input id="same-shift-checkbox-thu" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-thu">THU</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -196,12 +201,13 @@
                 <td>
                   <label
                     class="switch weekday-holiday-switch weekday-holiday-switch-thu"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-thu" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>FRI</th>
+             
+                <th><input id="same-shift-checkbox-fri" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-fri">FRI</label></th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -215,12 +221,13 @@
                 <td>
                   <label
                     class="switch weekday-holiday-switch weekday-holiday-switch-fri"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-fri" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
               <tr>
-                <th>SAT</th>
+               
+                <th><input id="same-shift-checkbox-sat" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-sat">SAT</th>
                 <td></td>
                 <td>
                   <select class="shift-selector">
@@ -233,10 +240,22 @@
                 </td>
                 <td>
                   <label class="switch"
-                    ><input type="checkbox" /><span class="slider round"></span
+                    ><input type="checkbox" id="switch-sat" /><span class="slider round"></span
                   ></label>
                 </td>
               </tr>
+              
+            </tbody>
+
+          <tbody id="control-row">
+            <tr>
+               
+              <th><button id="toggle-weekdays">A/C</button></th>
+              <td></td>
+              <td><button id="reset-shifts">Reset Shifts</button>
+              </td>
+              <td><button id="reset-holidays">Reset</button></td>
+            </tr>
             </tbody>
           </table>
           <button
