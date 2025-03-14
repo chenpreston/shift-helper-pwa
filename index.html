@@ -1,365 +1,160 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-      user-scalable="no"
-    />
-    <meta
-      name="description"
-      content="A tool to help you manage shifts effortlessly. Select a DEPOT, plan your weekly shifts, and add them to your calendar."
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./assets/icons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./assets/icons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./assets/icons/favicon-16x16.png"
-    />
-    <meta charset="UTF-8" />
-    <title>SHIFT Helper</title>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRIVER Helper</title>
     <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-LCDE1JNW2B"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    gtag("config", "G-LCDE1JNW2B");
-  </script>
-  <body>
-    <div id="depot-selection-container">
-      <div id="depot-selection-ui">
-        <header>
-          <h1>SHIFT Helper</h1>
-        </header>
+        html, body {
+            height: 100%; /* 确保body占满视口 */
+            overflow: hidden; /* 防止滚动条干扰 */
+        }
 
-        <div id="version">
-          <section id="depot-prompt"></section>
-        </div>
-        <section id="school-holiday-setting">
-          <label for="school-holiday-switch">School Holiday</label>
-          <label class="switch">
-            <input type="checkbox" id="school-holiday-switch" />
-            <span class="slider round"></span>
-          </label>
-        </section>
+        body {
+            display: flex;
+            flex-direction: column;
+        }
 
-        <section id="depot-buttons">
-          <fieldset id="drive-shifts">
-            <legend>Driving Shifts</legend>
-            <button id="greerton-depot">Greerton</button>
-            <button id="papamoa-depot">Papamoa</button>
-            <button id="maleme-depot">Maleme</button>
-          </fieldset>
-          <fieldset id="standby-shifts">
-            <legend>NON-Driving Shifts</legend>
-            <button id="standby-depot">Standby</button>
-          </fieldset>
+        .navbar {
+            background-color: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-around;
+        }
 
-          <div id="contact-about-buttons">
-            <button id="contact-button" class="contact-btn">
-              Send Feedback
-            </button>
-            <button id="about-button" class="about-btn">About</button>
-          </div>
-        </section>
-      </div>
-      <section id="week-date-selector" style="display: none">
-        <p>Pick a day from your desired week</p>
-        <input type="date" id="week-start-date" />
-        <button id="back-to-depot-selection">Back</button>
-      </section>
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            flex: 1;
+            cursor: pointer;
+        }
 
-      <section id="schedule-week-view" style="display: none">
-        <h2>
-          Toggle the holiday switch if applicable, then pick a shift from the
-          dropdown.
-        </h2>
-        <div id="schedule-table-view-container">
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>Date</th>
-                <th>Shift</th>
-                <th>Holiday</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                
-                <th><input id="same-shift-checkbox-sun" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-sun">SUN</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label class="switch"
-                    ><input type="checkbox" id="switch-sun" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-               
-                <th><input id="same-shift-checkbox-mon" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-mon">MON</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label
-                    class="switch weekday-holiday-switch weekday-holiday-switch-mon"
-                    ><input type="checkbox" id="switch-mon" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-               
-                <th><input id="same-shift-checkbox-tue" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-tue">TUE</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label
-                    class="switch weekday-holiday-switch weekday-holiday-switch-tue"
-                    ><input type="checkbox" id="switch-tue" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-               
-                <th><input id="same-shift-checkbox-wed" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-wed">WED</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label
-                    class="switch weekday-holiday-switch weekday-holiday-switch-wed"
-                    ><input type="checkbox" id="switch-wed" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-           
-                <th><input id="same-shift-checkbox-thu" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-thu">THU</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label
-                    class="switch weekday-holiday-switch weekday-holiday-switch-thu"
-                    ><input type="checkbox" id="switch-thu" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-             
-                <th><input id="same-shift-checkbox-fri" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-fri">FRI</label></th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label
-                    class="switch weekday-holiday-switch weekday-holiday-switch-fri"
-                    ><input type="checkbox" id="switch-fri" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              <tr>
-               
-                <th><input id="same-shift-checkbox-sat" type="checkbox" class="same-shift-checkbox"><label for="same-shift-checkbox-sat">SAT</th>
-                <td></td>
-                <td>
-                  <select class="shift-selector">
-                    <option value="">Select shift</option>
-                    <option value="morning">早班</option>
-                    <option value="afternoon">午班</option>
-                    <option value="evening">晚班</option>
-                    <option value="off">休息</option>
-                  </select>
-                </td>
-                <td>
-                  <label class="switch"
-                    ><input type="checkbox" id="switch-sat" /><span class="slider round"></span
-                  ></label>
-                </td>
-              </tr>
-              
-            </tbody>
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
 
-          <tbody id="control-row">
-            <tr>
-               
-              <th><button id="toggle-weekdays">A/C</button></th>
-              <td></td>
-              <td><button id="reset-shifts">Reset Shifts</button>
-              </td>
-              <td><button id="reset-holidays">Reset</button></td>
-            </tr>
-            </tbody>
-          </table>
-          <button
-            id="add-to-calendar-button"
-            class="depot-button"
-            style="margin-top: 20px"
-          >
-            Add to Calendar
-          </button>
-          <a
-            id="hiddenDownloadLink"
-            style="display: none"
-            download="Schedule.ics"
-          ></a>
-          <button id="back-to-date-selector-button">Back</button>
-        </div>
-      </section>
-      <section id="contact-section" style="display: none">
-        <form
-          action="https://formspree.io/f/mjkybokv"
-          class="fs-form"
-          target="_top"
-          method="POST"
-        >
-          <div class="fs-field">
-            <label class="fs-label" for="email">Email</label>
-            <input class="fs-input" id="email" name="email" required />
-          </div>
-          <div class="fs-field">
-            <label class="fs-label" for="message">Message</label>
-            <textarea
-              class="fs-textarea"
-              id="message"
-              name="message"
-            ></textarea>
-          </div>
-          <div class="fs-button-group">
-            <button class="fs-button" type="submit">Submit</button>
-            <button id="back-to-depot-selection-from-form">Back</button>
-          </div>
-        </form>
-      </section>
-      <section id="about-section" style="display: none">
-        <h2>About SHIFT Helper</h2>
-        <div class="about-content">
-          <a
-            href="https://github.com/chenpreston"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              id="github-logo"
-              src="./assets/icons/github-mark.svg"
-              alt="GitHub"
-              width="30"
-              height="30"
-              style="vertical-align: middle"
-            />
-          </a>
-          <!-- 说明文字 -->
+        .content {
+            flex: 1; /* 占满剩余空间 */
+            overflow: auto; /* 如果内容超长，允许滚动 */
+        }
 
-          <p style="vertical-align: middle; text-align: center">
-            This application is hosted on
-            <a
-              href="https://github.com/chenpreston/shift-helper-pwa"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><img
-                id="github-mark"
-                src="./assets/icons/GitHub_Logo.png"
-                alt="GitHub"
-                width="74"
-                height="30"
-                style="vertical-align: middle"
-              />
-            </a>
-          </p>
-          <a
-            href="https://github.com/chenpreston/shift-helper-pwa/releases"
-            target="_blank"
-            ><p id="update-history">Update History</p></a
-          >
-          <a
-            href="https://github.com/chenpreston/shift-helper-pwa/blob/main/README.md"
-            target="_blank"
-            ><p id="readme">README</p></a
-          >
+        iframe {
+            width: 100%;
+            height: 100%; /* 确保iframe填满content区域 */
+            border: none;
+            display: block;
+        }
 
-          <section id="license">
-            <p>SHIFT Helper - Copyright © 2025 chenpreston</p>
-            <p>
-              under the
-              <a
-                href="https://github.com/chenpreston/shift-helper-pwa/blob/main/LICENSE"
-                >MIT Lisense</a
-              >.
-            </p>
-          </section>
-        </div>
-        <button id="back-to-depot-from-about">Back</button>
-      </section>
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 5px 0;
+            }
+
+            .navbar a {
+                padding: 12px 10px;
+                font-size: 14px;
+            }
+
+            .content {
+                padding: 0; /* 手机端移除内边距 */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .navbar a {
+                font-size: 12px;
+                padding: 10px 5px;
+            }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script
+async
+src="https://www.googletagmanager.com/gtag/js?id=G-LCDE1JNW2B"
+></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag("js", new Date());
+
+gtag("config", "G-LCDE1JNW2B");
+</script>
+<body>
+    <!-- iframe 内容区域 -->
+    <div class="content">
+        <iframe id="contentFrame" src="https://chenpreston.github.io/shift-helper/index.html"></iframe>
     </div>
-    <script src="./js/lib/papaparse.js"></script>
-    <script src="./js/components/utils.js"></script>
-    <script type="module" src="./js/script.js"></script>
-  </body>
+
+    <!-- 导航条 -->
+    <div class="navbar">
+        <a onclick="document.getElementById('contentFrame').src='https://chenpreston.github.io/shift-helper/index.html'">SHIFT Helper</a>
+        <a onclick="document.getElementById('contentFrame').src='https://chenpreston.github.io/route-helper/index.html'">ROUTE Helper</a>
+        <a onclick="document.getElementById('contentFrame').src='about.html'">ABOUT</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            document.getElementById('contentFrame').src = 'https://chenpreston.github.io/shift-helper/index.html'; // 默认加载page1
+        }
+    </script>
+    <script>
+        // Service Worker 注册
+if ("serviceWorker" in navigator) {
+  console.log("script.js: 注册 Service Worker 中...");
+  navigator.serviceWorker
+    .register("./service-worker.js")
+    .then((registration) => {
+      console.log("script.js: Service Worker 已注册:", registration);
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
+        newWorker.addEventListener("statechange", () => {
+          if (
+            newWorker.state === "installed" &&
+            navigator.serviceWorker.controller
+          ) {
+            console.log("有新版本的 Service Worker 可用");
+            if (confirm("A new version is available. Refresh to update?")) {
+              newWorker.postMessage({ action: "skipWaiting" });
+            }
+          }
+        });
+      });
+    })
+    .catch((err) =>
+      console.error("script.js: Service Worker registration failed:", err)
+    );
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    console.log("正在载入新版本的 Service Worker");
+    window.location.reload();
+  });
+
+  navigator.serviceWorker.addEventListener("message", (event) => {
+    if (event.data && event.data.action === "skipWaiting") {
+      console.log("Skipping waiting via message");
+    }
+  });
+}
+    </script>
+</body>
 </html>
