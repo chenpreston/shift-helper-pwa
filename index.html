@@ -13,8 +13,8 @@
         }
 
         html, body {
-            height: 100%; /* 确保body占满视口 */
-            overflow: hidden; /* 防止滚动条干扰 */
+            height: 100%;
+            overflow: hidden;
         }
 
         body {
@@ -23,138 +23,112 @@
         }
 
         .navbar {
-            background-color: #333;
+            background-color: #000;
             position: fixed;
             bottom: 0;
             width: 100%;
             z-index: 1000;
-            padding: 10px 0;
+            padding: 10px;
             display: flex;
             justify-content: space-around;
         }
 
         .navbar a {
             display: block;
-            color: white;
+            color: #fff;
             text-align: center;
-            padding: 14px 20px;
+            padding: 20px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             transition: background-color 0.3s;
             flex: 1;
             cursor: pointer;
         }
 
         .navbar a:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: #000;
+            color: #fff;
         }
 
         .content {
-            flex: 1; /* 占满剩余空间 */
-            overflow: auto; /* 如果内容超长，允许滚动 */
+            flex: 1;
+            overflow: auto;
         }
 
         iframe {
             width: 100%;
-            height: 100%; /* 确保iframe填满content区域 */
+            height: 100%;
             border: none;
             display: block;
         }
 
-        @media screen and (max-width: 768px) {
-            .navbar {
-                padding: 5px 0;
-            }
+      
 
-            .navbar a {
-                padding: 12px 10px;
-                font-size: 14px;
-            }
-
-            .content {
-                padding: 0; /* 手机端移除内边距 */
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .navbar a {
-                font-size: 12px;
-                padding: 10px 5px;
-            }
-        }
+        
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script
-async
-src="https://www.googletagmanager.com/gtag/js?id=G-LCDE1JNW2B"
-></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
-}
-gtag("js", new Date());
-
-gtag("config", "G-LCDE1JNW2B");
-</script>
 <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCDE1JNW2B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-LCDE1JNW2B");
+    </script>
+
     <!-- iframe 内容区域 -->
     <div class="content">
-        <iframe id="contentFrame" src="https://chenpreston.github.io/shift-helper/index.html"></iframe>
+        <iframe id="contentFrame" src="/shift-helper/index.html"></iframe>
     </div>
 
     <!-- 导航条 -->
     <div class="navbar">
-        <a onclick="document.getElementById('contentFrame').src='https://chenpreston.github.io/shift-helper/index.html'">SHIFT Helper</a>
-        <a onclick="document.getElementById('contentFrame').src='https://chenpreston.github.io/route-helper/index.html'">ROUTE Helper</a>
+        <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'">SHIFT</a>
+        <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'">ROUTE</a>
         <a onclick="document.getElementById('contentFrame').src='about.html'">ABOUT</a>
     </div>
 
     <script>
         window.onload = function() {
-            document.getElementById('contentFrame').src = 'https://chenpreston.github.io/shift-helper/index.html'; // 默认加载page1
+            document.getElementById('contentFrame').src = '/shift-helper/index.html';
         }
     </script>
     <script>
         // Service Worker 注册
-if ("serviceWorker" in navigator) {
-  console.log("script.js: 注册 Service Worker 中...");
-  navigator.serviceWorker
-    .register("./service-worker.js")
-    .then((registration) => {
-      console.log("script.js: Service Worker 已注册:", registration);
-      registration.addEventListener("updatefound", () => {
-        const newWorker = registration.installing;
-        newWorker.addEventListener("statechange", () => {
-          if (
-            newWorker.state === "installed" &&
-            navigator.serviceWorker.controller
-          ) {
-            console.log("有新版本的 Service Worker 可用");
-            if (confirm("A new version is available. Refresh to update?")) {
-              newWorker.postMessage({ action: "skipWaiting" });
-            }
-          }
-        });
-      });
-    })
-    .catch((err) =>
-      console.error("script.js: Service Worker registration failed:", err)
-    );
+        if ("serviceWorker" in navigator) {
+            console.log("script.js: 注册 Service Worker 中...");
+            navigator.serviceWorker
+                .register("./service-worker.js")
+                .then((registration) => {
+                    console.log("script.js: Service Worker 已注册:", registration);
+                    registration.addEventListener("updatefound", () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener("statechange", () => {
+                            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+                                console.log("有新版本的 Service Worker 可用");
+                                if (confirm("A new version DRIVER Helper is available. Refresh to update?")) {
+                                    newWorker.postMessage({ action: "skipWaiting" });
+                                }
+                            }
+                        });
+                    });
+                })
+                .catch((err) => console.error("script.js: Service Worker registration failed:", err));
 
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    console.log("正在载入新版本的 Service Worker");
-    window.location.reload();
-  });
+            navigator.serviceWorker.addEventListener("controllerchange", () => {
+                console.log("正在载入新版本的 Service Worker");
+                window.location.reload();
+            });
 
-  navigator.serviceWorker.addEventListener("message", (event) => {
-    if (event.data && event.data.action === "skipWaiting") {
-      console.log("Skipping waiting via message");
-    }
-  });
-}
+            navigator.serviceWorker.addEventListener("message", (event) => {
+                if (event.data && event.data.action === "skipWaiting") {
+                    console.log("Skipping waiting via message");
+                }
+            });
+        }
     </script>
 </body>
 </html>
