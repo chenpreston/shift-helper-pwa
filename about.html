@@ -138,10 +138,16 @@
         button:hover {
             background-color: #545454;
         }
-        #copyright {
+        #copyright p {
+            margin: 0;
   text-align: center;
-  margin-top: 3em;
-  font-size: 0.8em;
+  font-size: 0.5em;
+}
+#copyright p:first-child {
+    margin-top: 6em;
+}
+#copyright p:last-child {
+    margin-bottom: 3em;
 }
         li {
         margin: 0;
@@ -166,9 +172,9 @@ font-size: 0.8em;
         <h1>DRIVER Helper</h1>
         <h2>app version</h2>
         <ul>
-            <li>DRIVER Helper ver. v0.2.3</li>
-            <li>SHIFT Helper ver. v0.6.3</li>
-            <li>ROUTE Helper ver. v0.3.0</li>
+            <li>DRIVER Helper ver. v0.2.4</li>
+            <li>SHIFT Helper ver. v0.6.5</li>
+            <li>ROUTE Helper ver. v0.3.1</li>
         </ul>
         <h2>data version</h2>
         <ul>
@@ -207,7 +213,10 @@ font-size: 0.8em;
                 </div>
             </form>
         </section>
-        <p id="copyright"><a href="https://opensource.org/license/mit">MIT license</a><br>Copyright (c) 2025 Preston Chen</p>
+        <section id="copyright">
+        <p>&copy; 2025 Preston Chen - <a href="https://opensource.org/license/mit">MIT license</a></p>
+        <p>Bus emoji designed by <a href="https://openmoji.org/">OpenMoji</a> - License: <a href="https://creativecommons.org/licenses/by-sa/4.0/#">CC BY-SA 4.0</a></p>
+    </section>
     </div>
 </body>
 </html>

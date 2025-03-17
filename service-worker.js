@@ -1,8 +1,9 @@
-const CACHE_NAME = "driver-helper-cache-v0.2.3"; // 更新缓存时修改版本号                             
+const CACHE_NAME = "driver-helper-cache-v0.2.4"; // 更新缓存时修改版本号                                  
 const urlsToCache = [
   "/",
   "./index.html",
   "./about.html",
+  "./manifest.json",
   //  "./css/style.css",
   //  "./js/script.js",
   //  "./data/shifts.csv",
