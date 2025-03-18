@@ -49,7 +49,7 @@
         }
         /* 联系表单容器 */
         #contact-section {
-            margin-top: 20px;
+            margin-top: 5em;
             text-align: center;
         }
         /* 表单整体样式 */
@@ -141,7 +141,7 @@
         #copyright p {
             margin: 0;
   text-align: center;
-  font-size: 0.5em;
+  font-size: 0.8em;
 }
 #copyright p:first-child {
     margin-top: 6em;
@@ -153,7 +153,12 @@
         margin: 0;
 font-size: 0.8em;
         }
-            
+        #routes-and-stops {
+            margin-top: 3em;
+        }
+            #shifts-ver li:last-child {
+margin-top: 1em;
+            }
         
     </style>
 </head>
@@ -172,25 +177,26 @@ font-size: 0.8em;
         <h1>DRIVER Helper</h1>
         <h2>app version</h2>
         <ul>
-            <li>DRIVER Helper ver. v0.2.4</li>
+            <li>DRIVER Helper ver. v0.2.5</li>
             <li>SHIFT Helper ver. v0.6.5</li>
-            <li>ROUTE Helper ver. v0.3.1</li>
+            <li>ROUTE Helper ver. v0.3.2</li>
         </ul>
         <h2>data version</h2>
         <ul>
             <fieldset>
                 <legend>SHIFTS</legend>
             
-                <ul>
+                <ul id="shifts-ver">
                     <li><strong>School Term:</strong> TN_WD_Mar24e-2 (DataSet 4896)</li>
                     <li><strong>School Holidays:</strong> TN_SH_Mar24e-1 (DataSet 4896)</li>
                     <li><strong>Weekend:</strong> TN_WN_Mar24e-2 (DataSet 4896)</li>
+                    <li>If the last part of the footer on the company's shift card differs from the version number above, the shift database needs an update.</li>
                 </ul>
             </fieldset>
-            <fieldset>
+            <fieldset id="routes-and-stops">
             <legend>ROUTES & STOPS:</legend>
                 <ul>
-                    <li>Bay of Plenty Regional Council GTFS: 02.12.2024</li>
+                    <li><a href="https://www.baybus.co.nz/help-and-contact/general-transit-feed-specification/" target="_blank">GTFS File December 2024</a> <<==Click this link to check the file's date on the new page. If it’s different, an update is needed.</li>
                 </ul>
             </fieldset>
         </ul>
