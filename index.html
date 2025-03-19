@@ -1,11 +1,10 @@
 <!-- @license
 Driver Helper
-v0.2.3
 https://github.com/chenpreston/shift-helper-pwa
 License: MIT
 -->
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,34 +86,28 @@ License: MIT
 
     <!-- iframe 内容区域 -->
     <div class="content">
-        <iframe id="contentFrame" src="/shift-helper/index.html"></iframe>
+        <iframe id="contentFrame" src="/about/index.html"></iframe>
     </div>
 
     <!-- 导航条 -->
     <div class="navbar">
         <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'">SHIFT</a>
         <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'">ROUTE</a>
-        <a onclick="document.getElementById('contentFrame').src='about.html'">ABOUT</a>
+        <a onclick="document.getElementById('contentFrame').src='/about/index.html'">ABOUT</a>
     </div>
-
-    <script>
-        window.onload = function() {
-            document.getElementById('contentFrame').src = '/shift-helper/index.html';
-        }
-    </script>
     <script>
         // Service Worker 注册
         if ("serviceWorker" in navigator) {
-            console.log("script.js: 注册 Service Worker 中...");
+            console.log("driver helper: 注册 Service Worker 中...");
             navigator.serviceWorker
                 .register("./service-worker.js")
                 .then((registration) => {
-                    console.log("script.js: Service Worker 已注册:", registration);
+                    console.log("driver helper: Service Worker 已注册:", registration);
                     registration.addEventListener("updatefound", () => {
                         const newWorker = registration.installing;
                         newWorker.addEventListener("statechange", () => {
                             if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-                                console.log("有新版本的 Service Worker 可用");
+                                console.log("driver helper: 有新版本的 Service Worker 可用");
                                 if (confirm("A new version DRIVER Helper is available. Refresh to update?")) {
                                     newWorker.postMessage({ action: "skipWaiting" });
                                 }
@@ -122,16 +115,16 @@ License: MIT
                         });
                     });
                 })
-                .catch((err) => console.error("script.js: Service Worker registration failed:", err));
+                .catch((err) => console.error("driver helper: Service Worker registration failed:", err));
 
             navigator.serviceWorker.addEventListener("controllerchange", () => {
-                console.log("正在载入新版本的 Service Worker");
+                console.log("driver helper: 正在载入新版本的 Service Worker");
                 window.location.reload();
             });
 
             navigator.serviceWorker.addEventListener("message", (event) => {
                 if (event.data && event.data.action === "skipWaiting") {
-                    console.log("Skipping waiting via message");
+                    console.log("driver helper: Skipping waiting via message");
                 }
             });
         }
