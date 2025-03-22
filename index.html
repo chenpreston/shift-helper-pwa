@@ -5,9 +5,18 @@ License: MIT
 -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="DRIVER Helper is a Progressive Web App (PWA) that helps drivers to manage their work shifts, routes, and counting tasks." />
+    <meta name="keywords"
+        content="driver, helper, shift, route, counting, task, management, progressive, web, app, pwa" />
+    <meta name="author" content="Preston Chen" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/favicon-16x16.png" />
     <title>DRIVER Helper</title>
     <link rel="manifest" href="manifest.json" />
     <style>
@@ -17,7 +26,8 @@ License: MIT
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow: hidden;
             font-family: Arial, sans-serif;
@@ -34,7 +44,8 @@ License: MIT
             bottom: 0;
             width: 100%;
             z-index: 1000;
-            padding: 10px;
+            padding-top: 20px;
+            padding-bottom: 30px;
             display: flex;
             justify-content: space-around;
         }
@@ -68,11 +79,12 @@ License: MIT
             display: block;
         }
 
-      
-
-        
+        .navbar-btn {
+            float: top;
+        }
     </style>
 </head>
+
 <body>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LCDE1JNW2B"></script>
@@ -87,15 +99,19 @@ License: MIT
 
     <!-- iframe 内容区域 -->
     <div class="content">
-        <iframe id="contentFrame" src="/about/index.html"></iframe>
+        <iframe id="contentFrame" src="/shift-helper/index.html"></iframe>
     </div>
 
     <!-- 导航条 -->
     <div class="navbar">
-        <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'"><img src="./assets/icons/shift.svg" width="64"></a>
-        <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'"><img src="./assets/icons/route.svg" width="64"></a>
-        <a onclick="document.getElementById('contentFrame').src='./working.html'"><img src="./assets/icons/working.svg" width="64"></a>
-        <a onclick="document.getElementById('contentFrame').src='/about/index.html'"><img src="./assets/icons/about.svg" width="64"></a>
+        <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'"><img class="navbar-btn"
+                src="./assets/icons/calendar-solid.svg" width="28" /></a>
+        <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'"><img class="navbar-btn"
+                src="./assets/icons/route-solid.svg" width="30" /></a>
+        <a onclick="document.getElementById('contentFrame').src='/counting-helper/index.html'"><img class="navbar-btn"
+                src="./assets/icons/child-reaching-solid.svg" width="24" /></a>
+        <a onclick="document.getElementById('contentFrame').src='/about/index.html'"><img class="navbar-btn"
+                src="./assets/icons/circle-info-solid.svg" width="31" /></a>
     </div>
     <script>
         // Service Worker 注册
@@ -108,16 +124,28 @@ License: MIT
                     registration.addEventListener("updatefound", () => {
                         const newWorker = registration.installing;
                         newWorker.addEventListener("statechange", () => {
-                            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+                            if (
+                                newWorker.state === "installed" &&
+                                navigator.serviceWorker.controller
+                            ) {
                                 console.log("driver helper: 有新版本的 Service Worker 可用");
-                                if (confirm("A new version DRIVER Helper is available. Refresh to update?")) {
+                                if (
+                                    confirm(
+                                        "A new version DRIVER Helper is available. Refresh to update?"
+                                    )
+                                ) {
                                     newWorker.postMessage({ action: "skipWaiting" });
                                 }
                             }
                         });
                     });
                 })
-                .catch((err) => console.error("driver helper: Service Worker registration failed:", err));
+                .catch((err) =>
+                    console.error(
+                        "driver helper: Service Worker registration failed:",
+                        err
+                    )
+                );
 
             navigator.serviceWorker.addEventListener("controllerchange", () => {
                 console.log("driver helper: 正在载入新版本的 Service Worker");
@@ -132,4 +160,5 @@ License: MIT
         }
     </script>
 </body>
+
 </html>
