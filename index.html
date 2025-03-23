@@ -51,20 +51,23 @@ License: MIT
         }
 
         .navbar a {
-            display: block;
-            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
             text-align: center;
             padding: 0;
             text-decoration: none;
-            font-size: 18px;
-            transition: background-color 0.3s;
+            font-size: 14px;
+            transition: color 0.3s, transform 0.3s;
             flex: 1;
             cursor: pointer;
         }
 
-        .navbar a:hover {
-            background-color: #000;
+        .navbar a:hover,
+        .navbar a.active {
             color: #fff;
+            transform: scale(1.1);
         }
 
         .content {
@@ -104,23 +107,25 @@ License: MIT
 
     <!-- 导航条 -->
     <div class="navbar">
-        <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'"><img class="navbar-btn"
-                src="./assets/icons/calendar-solid.svg" width="28" /></a>
-        <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'"><img class="navbar-btn"
-                src="./assets/icons/route-solid.svg" width="30" /></a>
-        <a onclick="document.getElementById('contentFrame').src='/counting-helper/index.html'"><img class="navbar-btn"
-                src="./assets/icons/child-reaching-solid.svg" width="24" /></a>
-        <a onclick="document.getElementById('contentFrame').src='/about/index.html'"><img class="navbar-btn"
-                src="./assets/icons/circle-info-solid.svg" width="31" /></a>
+        <a onclick="document.getElementById('contentFrame').src='/shift-helper/index.html'; setActive(this)"><img
+                class="navbar-btn" src="./assets/icons/calendar.svg" width="28" /><span>Shift</span></a>
+        <a onclick="document.getElementById('contentFrame').src='/route-helper/index.html'; setActive(this)"><img
+                class="navbar-btn" src="./assets/icons/route.svg" width="30" /><span>Route</span></a>
+        <a onclick="document.getElementById('contentFrame').src='/counting-helper/index.html'; setActive(this)"><img
+                class="navbar-btn" src="./assets/icons/child.svg" width="24" /><span>Count</span></a>
+        <a onclick="document.getElementById('contentFrame').src='/cash-helper/index.html'; setActive(this)"><img
+                class="navbar-btn" src="./assets/icons/coins.svg" width="30" /><span>Cash</span></a>
+        <a onclick="document.getElementById('contentFrame').src='/about/index.html'; setActive(this)"><img
+                class="navbar-btn" src="./assets/icons/info.svg" width="31" /><span>About</span></a>
     </div>
     <script>
         // Service Worker 注册
         if ("serviceWorker" in navigator) {
-            console.log("driver helper: 注册 Service Worker 中...");
+
             navigator.serviceWorker
                 .register("./service-worker.js")
                 .then((registration) => {
-                    console.log("driver helper: Service Worker 已注册:", registration);
+
                     registration.addEventListener("updatefound", () => {
                         const newWorker = registration.installing;
                         newWorker.addEventListener("statechange", () => {
@@ -128,7 +133,7 @@ License: MIT
                                 newWorker.state === "installed" &&
                                 navigator.serviceWorker.controller
                             ) {
-                                console.log("driver helper: 有新版本的 Service Worker 可用");
+
                                 if (
                                     confirm(
                                         "A new version DRIVER Helper is available. Refresh to update?"
@@ -148,15 +153,20 @@ License: MIT
                 );
 
             navigator.serviceWorker.addEventListener("controllerchange", () => {
-                console.log("driver helper: 正在载入新版本的 Service Worker");
+
                 window.location.reload();
             });
 
             navigator.serviceWorker.addEventListener("message", (event) => {
                 if (event.data && event.data.action === "skipWaiting") {
-                    console.log("driver helper: Skipping waiting via message");
+
                 }
             });
+        }
+
+        function setActive(element) {
+            document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active'));
+            element.classList.add('active');
         }
     </script>
 </body>
