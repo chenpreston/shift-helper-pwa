@@ -1,6 +1,6 @@
 {
-  "name": "DRIVER Helper",
-  "short_name": "DRIVER Helper",
+  "name": "BusFlow",
+  "short_name": "BusFlow",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
