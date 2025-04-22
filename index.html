@@ -142,11 +142,7 @@ License: MIT
                                 navigator.serviceWorker.controller
                             ) {
 
-                                if (
-                                    confirm(
-                                        "A new version DRIVER Helper is available. Refresh to update?"
-                                    )
-                                ) {
+                               {
                                     newWorker.postMessage({ action: "skipWaiting" });
                                 }
                             }
