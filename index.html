@@ -25,7 +25,9 @@ License: MIT
             padding: 0;
             box-sizing: border-box;
         }
-
+.new {
+        width: 0.4em;
+    }
         img {
             width: 1.5em;
         }
@@ -125,6 +127,8 @@ License: MIT
                 class="navbar-btn" src="./assets/icons/coins.svg"><span>Cash</span></a>
         <a onclick="document.getElementById('contentFrame').src='/about/index.html'; setActive(this)"><img
                 class="navbar-btn" src="./assets/icons/info.svg"><span>About</span></a>
+                <a onclick="document.getElementById('contentFrame').src='./new.html'; setActive(this)"><img
+                class="new" src="./assets/icons/exclamation.svg"><span>New!</span></a>
     </div>
     <script>
         // Service Worker 注册
